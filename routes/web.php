@@ -42,7 +42,7 @@ Route::get('boutique', function()
     return View::make('pages.boutique');
 })->name('boutique');
 
-Route::get('eve',function ()
+Route::get('event',function ()
 {
     return View::make('pages.evenement');
 })->name('eve');
