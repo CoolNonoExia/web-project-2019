@@ -11,6 +11,8 @@
     footer {
         background-color: #101010;
         padding: 20px;
+        position: fixed;
+        bottom: 0;
     }
     footer {margin-top: 60px;}
     footer .btn {padding: 10px;}
