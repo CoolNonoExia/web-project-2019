@@ -18,10 +18,10 @@
 
 </style>
 
-<a class="btn btn-link f" href="https://www.facebook.com/BdeCesiNice/"><i class="fab fa-facebook-square"></i></a>
-<a class="btn btn-link t" href="https://twitter.com/?lang=fr"><i class="fab fa-twitter"></i></a>
+<a class="btn btn-link f" href="https://www.facebook.com/BdeCesiNice/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+<a class="btn btn-link t" href="https://twitter.com/?lang=fr" target="_blank"><i class="fab fa-twitter" ></i></a>
 <a class="btn btn-link m" href="mailto:bdecesinice@viacesi.fr"><i class="fas fa-envelope"></i></a>
-<a class="btn btn-link i" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+<a class="btn btn-link i" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
 
 
 

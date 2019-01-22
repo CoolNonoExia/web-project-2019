@@ -49,7 +49,7 @@
 
 <div class="row">
     <div class="col-2 col-lg-1">
-        <a href="index.html">
+        <a href="{{route('home')}}">
             <img class="img-fluid" src="{{ asset('img/BDE_logo.png') }}" />
         </a>
 

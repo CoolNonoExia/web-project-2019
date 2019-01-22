@@ -12,37 +12,15 @@
 */
 
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/', function()
-{
-    return View::make('pages.home');
-})->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 
 
+Route::get('/', 'AccueilController@index')->name('home');
 
-Route::get('about', function()
-{
-    return View::make('pages.about');
-});
-Route::get('projects', function()
-{
-    return View::make('pages.projetcts');
-});
-Route::get('contact', function()
-{
-    return View::make('pages.contact');
-});
+Route::get('boutique', 'BoutiqueController@index')->name('boutique');
 
-Route::get('boutique', function()
-{
-    return View::make('pages.boutique');
-})->name('boutique');
+Route::get('event', 'EventsController@index')->name('eve');
 
-Route::get('event',function ()
-{
-    return View::make('pages.evenement');
-})->name('eve');
