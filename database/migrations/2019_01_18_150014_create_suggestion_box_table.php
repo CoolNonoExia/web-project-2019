@@ -18,8 +18,8 @@ class CreateSuggestionBoxTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->dateTime('post_date');
-            $table->integer('votes_number');
-            $table->integer('id_images_events');
+            $table->bigInteger('votes_number');
+            $table->bigInteger('id_images_events');
         });
     }
 

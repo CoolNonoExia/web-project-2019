@@ -15,10 +15,10 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_users');
+            $table->bigInteger('id_users');
             $table->integer('quantity');
             $table->boolean('paypal');
-            $table->integer('id_products');
+            $table->bigInteger('id_products');
         });
     }
 

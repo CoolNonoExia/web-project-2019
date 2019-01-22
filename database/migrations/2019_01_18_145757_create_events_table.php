@@ -22,9 +22,9 @@ class CreateEventsTable extends Migration
             $table->boolean('is_recurrent');
             $table->boolean('is_free');
             $table->boolean('to_come_up');
-            $table->integer('likes_number');
-            $table->integer('comments_number');
-            $table->integer('id_images_events');
+            $table->bigInteger('likes_number');
+            $table->bigInteger('comments_number');
+            $table->bigInteger('id_images_events');
         });
     }
 

@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->double('price');
             $table->boolean('in_stock');
-            $table->integer('id_categories');
-            $table->integer('id_images_products');
+            $table->bigInteger('id_categories');
+            $table->bigInteger('id_images_products');
         });
     }
 
