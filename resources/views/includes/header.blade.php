@@ -2,7 +2,6 @@
     header
     {
         background-color: #101010;
-        padding: 20px;
     }
     header {margin-bottom: 30px;}
     header .btn {margin: 5px;}
