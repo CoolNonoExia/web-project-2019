@@ -69,10 +69,10 @@
     </div>
     <div class="col-2 col-lg-1">
         <div class="topspace row justify-content-end">
-            <a href="signin.html"><button class="btn btn-outline-warning">Se connecter</button></a>
+            <a href="{{ route('login') }}"><button class="btn btn-outline-warning">Se connecter</button></a>
         </div>
         <div class="row justify-content-end">
-            <a href="signup.html"><button class="btn btn-outline-warning">S'inscrire</button></a>
+            <a href="{{ route('register') }}"><button class="btn btn-outline-warning">S'inscrire</button></a>
         </div>
     </div>
 </div>
