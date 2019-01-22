@@ -62,9 +62,9 @@
         <br>
 
         <div class="text-center">
-            <a href="index.html"><button class="btn btn-blue">Accueil</button></a>
-            <a href="events.html"><button class="btn btn-outline-blue">Evenements</button></a>
-            <a href="shop.html"><button class="btn btn-outline-blue">Boutique</button></a>
+            <a href="{{route('home')}}"><button class="btn btn-blue">Accueil</button></a>
+            <a href="{{route('eve')}}"><button class="btn btn-outline-blue">Evenements</button></a>
+            <a href="{{route('boutique')}}"><button class="btn btn-outline-blue">Boutique</button></a>
         </div>
     </div>
     <div class="col-2 col-lg-1">

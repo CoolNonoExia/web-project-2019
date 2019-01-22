@@ -19,7 +19,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function()
 {
     return View::make('pages.home');
-});
+})->name('home');
+
+
+
+
 Route::get('about', function()
 {
     return View::make('pages.about');
@@ -32,3 +36,13 @@ Route::get('contact', function()
 {
     return View::make('pages.contact');
 });
+
+Route::get('boutique', function()
+{
+    return View::make('pages.boutique');
+})->name('boutique');
+
+Route::get('eve',function ()
+{
+    return View::make('pages.evenement');
+})->name('eve');
