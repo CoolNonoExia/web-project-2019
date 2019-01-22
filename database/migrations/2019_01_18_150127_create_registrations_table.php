@@ -15,8 +15,8 @@ class CreateRegistrationsTable extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user');
-            $table->integer('id_events');
+            $table->bigInteger('id_user');
+            $table->bigInteger('id_events');
         });
     }
 
