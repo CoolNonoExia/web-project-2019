@@ -8,30 +8,41 @@
     <a href="{{route('boutique')}}"><button class="btn btn-outline-blue">Boutique</button></a>
 @endsection
 @section('content')
+    <script>
+
+
+        function wololo(element) {
+            let idx = element.selectedIndex;
+            let val = element.options[idx].value;
+
+            if(val==='eve')
+            {
+                location.replace('{{route('eve')}}');
+            }else {
+                location.replace('{{route('even')}}');
+            }
+
+            /*alert(val);*/
+
+        }
+
+    </script>
 
        <div class="container-fluid">
            <div class="row justify-content-center">
                <div class="col-8">
                    <div class="row">
-                       <div class="checkbox col-4">
-                           <label><input type="checkbox" value="true"> Evénement passés</label>
+                       <div class="custom-control custom-switch col-4">
+                           <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                           <label class="custom-control-label" for="customSwitch1"> Evenements passés</label>
                        </div>
                        <div class="dropdown  text-right col-8 ">
                            <span>Trier par : </span>
-                           <select class="custom-select" style="width:100px;">
-                               <option selected>Date</option>
-                               <option value="1">Payant</option>
-                               <option value="2">Gratuit</option>
-                               <option value="3">Nom</option>
+                           <select id="select" name="tri" class="custom-select" style="width:100px;" onchange="wololo(this)">
+                               <option selected>Choice</option>
+                               <option value="eve">Date</option>
+                               <option value="even">Nom</option>
                            </select>
-                           {{--<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               Date
-                           </button>
-                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                               <a class="dropdown-item" href="#">Payant</a>
-                               <a class="dropdown-item" href="#">Gratuit</a>
-                               <a class="dropdown-item" href="#">Nom</a>
-                           </div>--}}
                        </div>
                    </div>
                </div>
@@ -74,4 +85,5 @@
            </div>
                 @endforeach
        </div>
+
 @stop

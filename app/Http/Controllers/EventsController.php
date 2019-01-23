@@ -25,4 +25,11 @@ class EventsController extends Controller
         return view('pages.evenement')->withEvent($event);
 
     }
+    public function indexN()
+    {
+        //$event= Event::select('title','description','events_date')->find(1);
+        $event=Event::all()->sortBy('title');
+        return view('pages.evenement')->withEvent($event);
+
+    }
 }

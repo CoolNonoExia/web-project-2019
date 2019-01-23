@@ -24,3 +24,4 @@ Route::get('boutique', 'BoutiqueController@index')->name('boutique');
 
 Route::get('event', 'EventsController@index')->name('eve');
 
+Route::get('eventN', 'EventsController@indexN')->name('even');
