@@ -21,20 +21,20 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="./images/polo.png" alt="First slide">
-                <div class="carousel-caption d-none d-md-block"> Polo CESI personnalisable: 15€</div>
+                <img class="d-block w-100" src="./images/sweat.png" alt="First slide" height="">
+                <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 1: ...€ </b></div>
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100" src="./images/sweat.png" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block">Sweet-shirt CESI personnalisable: 25€</div>
+                <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 2: ...€ </b></div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="./images/pins.png" alt="Third slide">
-                <div class="carousel-caption d-none d-md-block">Pins CESI: 2€</div>
+                <img class="d-block w-100" src="./images/sweat.png" alt="Third slide">
+                <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 3: ...€</b></div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="./images/mug.png" alt="Fourth slide">
-                <div class="carousel-caption d-none d-md-block">Mug CESI: 5€</div>
+                <img class="d-block w-100" src="./images/sweat.png" alt="Fourth slide">
+                <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 4: ...€ </b></div>
             </div>
         </div>
         <a class="carousel-control-prev" href="#carousel-home" role="button" data-slide="prev">
@@ -49,6 +49,57 @@
     <html>
         <hr size="8"; align="center"; width="100%">
         <p style="text-align: left">Notre boutique propose une collection d'article qui dépassent l'entendement !</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                    <p style="text-align: center"> Article 1 </p>
+                    <p> Get this product for only ...€ </p>
+                    <button href=""> Ajouter au panier </button>
+                    <p></p>
 
+                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                    <p style="text-align: center"> Article 5 </p>
+                    <p> Get this product for only ...€ </p>
+                    <button href=""> Ajouter au panier </button>
+                </div>
+                <div class="col-sm">
+                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                    <p style="text-align: center"> Article 2 </p>
+                    <p> Get this product for only ...€ </p>
+                    <button href=""> Ajouter au panier </button>
+                    <p></p>
+
+                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                    <p style="text-align: center"> Article 6 </p>
+                    <p> Get this product for only ...€ </p>
+                    <button href=""> Ajouter au panier </button>
+                </div>
+                <div class="col-sm">
+                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                    <p style="text-align: center"> Article 3 </p>
+                    <p> Get this product for only ...€ </p>
+                    <button href=""> Ajouter au panier </button>
+                    <p></p>
+
+                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                    <p style="text-align: center"> Article 7 </p>
+                    <p> Get this product for only ...€ </p>
+                    <button href=""> Ajouter au panier </button>
+                </div>
+                <div class="col-sm">
+                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                    <p style="text-align: center"> Article 4 </p>
+                    <p> Get this product for only ...€ </p>
+                    <button href=""> Ajouter au panier </button>
+                    <p></p>
+
+                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                    <p style="text-align: center"> Article 8  </p>
+                    <p> Get this product for only ...€ </p>
+                    <button href=""> Ajouter au panier </button>
+                </div>
+            </div>
+        </div>
     </html>
 @stop
