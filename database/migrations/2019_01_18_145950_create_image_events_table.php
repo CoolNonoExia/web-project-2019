@@ -16,6 +16,7 @@ class CreateImageEventsTable extends Migration
         Schema::create('image_events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('ext');
             $table->boolean('is_presentation');
         });
     }

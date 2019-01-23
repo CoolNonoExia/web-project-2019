@@ -16,6 +16,7 @@ class CreateImagesProductsTable extends Migration
         Schema::create('images_products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('ext');
         });
     }
 
