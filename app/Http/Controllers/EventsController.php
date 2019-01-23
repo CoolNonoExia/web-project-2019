@@ -20,7 +20,8 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $event= Event::select('title','description','events_date')->find(1);
+        //$event= Event::select('title','description','events_date')->find(1);
+        $event=Event::all();
         return view('pages.evenement')->withEvent($event);
 
     }

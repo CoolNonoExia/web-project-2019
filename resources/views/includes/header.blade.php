@@ -59,12 +59,12 @@
     <div class="col-8 col-lg-10">
         <h1 class="text-center topspace"> Le BDE, plus qu'une idée, un avenir. </h1>
         <br>
-
-        <div class="text-center">
-            <a href="{{route('home')}}"><button class="btn btn-blue">Accueil</button></a>
-            <a href="{{route('eve')}}"><button class="btn btn-outline-blue">Evenements</button></a>
-            <a href="{{route('boutique')}}"><button class="btn btn-outline-blue">Boutique</button></a>
-        </div>
+            <div class="text-center">
+               {{-- <a href="{{route('home')}}"><button class="btn btn-blue">Accueil</button></a>
+                <a href="{{route('eve')}}"><button class="btn btn-outline-blue">Evenements</button></a>
+                <a href="{{route('boutique')}}"><button class="btn btn-outline-blue">Boutique</button></a>--}}
+                @yield('navbar')
+            </div>
     </div>
     <div class="col-2 col-lg-1">
         <div class="topspace row justify-content-end">

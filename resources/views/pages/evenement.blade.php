@@ -2,6 +2,11 @@
 @section('title')
     Evenements
 @endsection
+@section('navbar')
+    <a href="{{route('home')}}"><button class="btn btn-outline-blue">Accueil</button></a>
+    <a href="{{route('eve')}}"><button class="btn btn-blue">Evenements</button></a>
+    <a href="{{route('boutique')}}"><button class="btn btn-outline-blue">Boutique</button></a>
+@endsection
 @section('content')
 
        <div class="container-fluid">
@@ -28,7 +33,7 @@
                    </div>
                </div>
            </div>
-
+            @foreach($event as $event)
            <div class="row">
                <div class="col-2">
                    {{-- Images --}}
@@ -47,7 +52,7 @@
                    <div class="border">
                        <div>{{$event['description']}}</div>
                        <div class="text-right">
-                           @if($event['is_free']==0)
+                           @if($event['is_free'])
                                Free
                            @else
                                Payant
@@ -57,5 +62,6 @@
                    <hr style="border-top: 1px dashed #8c8b8b;">
                </div>
            </div>
+                @endforeach
        </div>
 @stop
