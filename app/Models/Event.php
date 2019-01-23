@@ -25,4 +25,8 @@ class Event extends Model
     {
         return $this->hasMany('registration', 'id_events', 'id');
     }
+
+
+    protected $table='events';
+
 }

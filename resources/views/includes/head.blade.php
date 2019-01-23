@@ -2,7 +2,7 @@
 <meta name="description" content="">
 <meta name="author" content="Scotch">
 
-<title>Accueil</title>
+<title>@yield('title')</title>
 
 <link rel="icon" type="image/png" href="{{ asset('img/BDE_icon.png') }}" />
 

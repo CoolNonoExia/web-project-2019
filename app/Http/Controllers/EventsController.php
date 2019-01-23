@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Event;
 
 class EventsController extends Controller
 {
@@ -19,6 +20,8 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return view('pages.evenement');
+        $event= Event::select('title','description','events_date')->find(1);
+        return view('pages.evenement')->withEvent($event);
+
     }
 }
