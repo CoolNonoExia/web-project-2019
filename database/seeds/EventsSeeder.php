@@ -30,7 +30,6 @@ class EventsSeeder extends Seeder
                 'id_images_events' => 0
             ]);
 
-            // bear 2 is named Cerms. He has a loud growl but is pretty much harmless.
             DB::table('events')->insert([
                 'title' => 'CCTL',
                 'description' => 'On en chie sur l\'automatique, normal',
@@ -44,7 +43,6 @@ class EventsSeeder extends Seeder
                 'id_images_events' => 1
             ]);
 
-            // bear 3 is named Adobot. He is a polar bear. He drinks vodka.
             DB::table('events')->insert([
                 'title' => 'Intelligence de Paul',
                 'description' => 'C\'est fini, trop dommage',

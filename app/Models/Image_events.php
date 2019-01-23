@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class image_events extends Model
+class Image_events extends Model
 {
     public function suggestion_box()
     {

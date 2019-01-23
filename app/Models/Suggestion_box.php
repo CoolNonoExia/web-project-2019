@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class suggestion_box extends Model
+class Suggestion_box extends Model
 {
     public function votes()
     {
