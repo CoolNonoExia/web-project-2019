@@ -10,8 +10,8 @@
 @section('content')
 
        <div class="container-fluid">
-           <div class="row">
-               <div class="col-8 offset-2">
+           <div class="row justify-content-center">
+               <div class="col-8">
                    <div class="row">
                        <div class="checkbox col-4">
                            <label><input type="checkbox" value="true"> Evénement passés</label>
@@ -34,15 +34,19 @@
                            </div>--}}
                        </div>
                    </div>
-                   <div class="col" style="margin: 30px 0px; background-color: #BD0F14; color: white; font-weight: bold; padding:4px">
-                       <p> Evenement à venir </p>
-                   </div>
+               </div>
+           </div>
+           <div class="row justify-content-center">
+               <div class="col-9" style="margin: 30px 0px; background-color: #BD0F14; color: white; font-weight: bold; padding:4px">
+                   <p> Evenement à venir </p>
                </div>
            </div>
             @foreach($event as $event)
            <div class="row">
                <div class="col-2">
                    {{-- Images --}}
+                   {{--$image--}}
+                   {{--<img src="{{asset('img\events\\'.$event['ext'])}}" class="image-fluid"/>--}}
                </div>
                <div class="col-8">
                    <div class="row">
