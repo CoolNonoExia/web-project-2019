@@ -1,12 +1,15 @@
 @extends('layouts.default')
+
 @section('title')
     Accueil
 @endsection
+
 @section('navbar')
     <a href="{{route('home')}}"><button class="btn btn-blue">Accueil</button></a>
     <a href="{{route('eve')}}"><button class="btn btn-outline-blue">Evenements</button></a>
     <a href="{{route('boutique')}}"><button class="btn btn-outline-blue">Boutique</button></a>
 @endsection
+
 @section('content')
     <div id="carousel-home" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -42,4 +45,4 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-@stop
+@endsection

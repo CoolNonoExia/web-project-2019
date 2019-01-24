@@ -1,12 +1,15 @@
 @extends('layouts.default')
+
 @section('title')
     Boutique
 @endsection
+
 @section('navbar')
     <a href="{{route('home')}}"><button class="btn btn-outline-blue">Accueil</button></a>
     <a href="{{route('eve')}}"><button class="btn btn-outline-blue">Evenements</button></a>
     <a href="{{route('boutique')}}"><button class="btn btn-blue">Boutique</button></a>
 @endsection
+
 @section('content')
     <html>
     <p style="text-align: center; color: #101010; font-size: larger"><b> ILS NE SERONT BIENTOT PLUS EN STOCK !</b></p>
@@ -102,4 +105,4 @@
             </div>
         </div>
     </html>
-@stop
+@endsection
