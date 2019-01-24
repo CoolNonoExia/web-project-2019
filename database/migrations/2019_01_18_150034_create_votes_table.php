@@ -15,8 +15,13 @@ class CreateVotesTable extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('id_user');
-            $table->bigInteger('id_suggestion_box');
+            $table->bigInteger('id_user')->unsigned();
+            $table->bigInteger('id_suggestion_box')->unsigned();
+            $table->foreign('id_suggestion_box')
+                ->references('id')
+                ->on('users')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
         });
     }
 
@@ -27,6 +32,9 @@ class CreateVotesTable extends Migration
      */
     public function down()
     {
+        Schema::table('votes', function(Blueprint $table) {
+            $table->dropForeign('votes_id_suggestion_box_foreign');
+        });
         Schema::dropIfExists('votes');
     }
 }

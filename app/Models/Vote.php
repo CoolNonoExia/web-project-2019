@@ -8,6 +8,6 @@ class Vote extends Model
 {
     public function suggestion_box()
     {
-        return $this->belongsTo('suggestion_box', 'id_suggestion_box', 'id');
+        return $this->belongsTo('Suggestion_box', 'id_suggestion_box', 'id');
     }
 }

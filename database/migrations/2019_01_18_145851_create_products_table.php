@@ -17,10 +17,15 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->double('price');
+            $table->double('price')->unsigned();
             $table->boolean('in_stock');
-            $table->bigInteger('id_categories');
-            $table->bigInteger('id_images_products');
+            $table->bigInteger('id_categories')->unsigned();
+            $table->bigInteger('id_images_products')->unsigned();
+            $table->foreign('id_images_products')
+                ->references('id')
+                ->on('users')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
         });
     }
 
@@ -31,6 +36,9 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::table('products', function(Blueprint $table) {
+            $table->dropForeign('products_id_images_products_foreign');
+        });
+        Schema::dropIfExists('products');
     }
 }

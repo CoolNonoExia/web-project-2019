@@ -15,8 +15,13 @@ class CreateRegistrationsTable extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('id_user');
-            $table->bigInteger('id_events');
+            $table->bigInteger('id_user')->unsigned();
+            $table->bigInteger('id_events')->unsigned();
+            $table->foreign('id_events')
+                ->references('id')
+                ->on('users')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
         });
     }
 
@@ -27,6 +32,9 @@ class CreateRegistrationsTable extends Migration
      */
     public function down()
     {
+        Schema::table('registrations', function(Blueprint $table) {
+            $table->dropForeign('registrations_id_events_foreign');
+        });
         Schema::dropIfExists('registrations');
     }
 }

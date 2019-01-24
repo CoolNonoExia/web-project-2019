@@ -13,23 +13,23 @@ class Images_eventsSeeder extends Seeder
     public function run()
     {
         // Clear our images_events table
-        DB::table('image_events')->delete();
+        DB::table('images_events')->delete();
 
         try{
             // Seed our events table
-            DB::table('image_events')->insert([
+            DB::table('images_events')->insert([
                 'title' => 'Piscine',
                 'ext' => 'webp',
                 'is_presentation' => true
             ]);
 
-            DB::table('image_events')->insert([
+            DB::table('images_events')->insert([
                 'title' => 'Caca',
                 'ext' => 'jpg',
                 'is_presentation' => true
             ]);
 
-            DB::table('image_events')->insert([
+            DB::table('images_events')->insert([
                 'title' => 'Paul',
                 'ext' => 'jpg',
                 'is_presentation' => true

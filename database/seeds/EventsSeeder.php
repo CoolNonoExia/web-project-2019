@@ -27,7 +27,7 @@ class EventsSeeder extends Seeder
                 'to_come_up' => true,
                 'likes_number' => 8,
                 'comments_number' => 12,
-                'id_images_events' => 0
+                'id_images_events' => 1
             ]);
 
             DB::table('events')->insert([
@@ -40,7 +40,7 @@ class EventsSeeder extends Seeder
                 'to_come_up' => true,
                 'likes_number' => 0,
                 'comments_number' => 30,
-                'id_images_events' => 1
+                'id_images_events' => 2
             ]);
 
             DB::table('events')->insert([
@@ -53,7 +53,7 @@ class EventsSeeder extends Seeder
                 'to_come_up' => false,
                 'likes_number' => 67,
                 'comments_number' => 21,
-                'id_images_events' => 2
+                'id_images_events' => 3
             ]);
         } catch (Exception $e) {
             echo $e;

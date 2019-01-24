@@ -21,10 +21,14 @@ class CreateEventsTable extends Migration
             $table->dateTime('post_date');
             $table->boolean('is_recurrent');
             $table->boolean('is_free');
-            $table->boolean('to_come_up');
-            $table->bigInteger('likes_number');
-            $table->bigInteger('comments_number');
-            $table->bigInteger('id_images_events');
+            $table->bigInteger('likes_number')->unsigned();
+            $table->bigInteger('comments_number')->unsigned();
+            $table->bigInteger('id_images_events')->unsigned();
+            $table->foreign('id_images_events')
+                ->references('id')
+                ->on('users')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
         });
     }
 
@@ -35,6 +39,9 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
+        Schema::table('events', function(Blueprint $table) {
+            $table->dropForeign('events_id_images_events_foreign');
+        });
         Schema::dropIfExists('events');
     }
 }

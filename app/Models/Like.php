@@ -8,6 +8,6 @@ class Like extends Model
 {
     public function event()
     {
-        return $this->belongsTo('event', 'id_events', 'id');
+        return $this->belongsTo('Event', 'id_events', 'id');
     }
 }
