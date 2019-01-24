@@ -8,6 +8,6 @@ class Category extends Model
 {
     public function products()
     {
-        return $this->hasMany('product', 'id_categories', 'id');
+        return $this->hasMany('Product', 'id_categories', 'id');
     }
 }
