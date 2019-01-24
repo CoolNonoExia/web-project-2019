@@ -54,78 +54,16 @@
         <p style="text-align: left">Notre boutique propose une collection d'article qui dépassent l'entendement !</p>
         <div class="container">
             <div class="row">
+                @foreach($product as $products)
                 <div class="col-sm">
                     <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center"> Article 1 </p>
-                    <p> Get this product for only ...€ </p>
-                    <button> Ajouter au panier </button>
+                    <p style="text-align: center">  {{$products['name']}} </p>
+                    <p>{{$products['description']}}</p>
+                    <p> Get this product for only {{$products['price']}}€ </p>
+                    <button class="btn btn-blue"> Ajouter au panier </button>
                     <p></p>
-
-                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center"> Article 5 </p>
-                    <p> Get this product for only ...€ </p>
-                    <button> Ajouter au panier </button>
-                    <p></p>
-
-                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center"> Article 9 </p>
-                    <p> Get this product for only ...€ </p>
-                    <button> Ajouter au panier </button>
                 </div>
-                <div class="col-sm">
-                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center"> Article 2 </p>
-                    <p> Get this product for only ...€ </p>
-                    <button> Ajouter au panier </button>
-                    <p></p>
-
-                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center"> Article 6 </p>
-                    <p> Get this product for only ...€ </p>
-                    <button> Ajouter au panier </button>
-                    <p></p>
-
-                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center"> Article 10 </p>
-                    <p> Get this product for only ...€ </p>
-                    <button> Ajouter au panier </button>
-                </div>
-                <div class="col-sm">
-                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center"> Article 3 </p>
-                    <p> Get this product for only ...€ </p>
-                    <button> Ajouter au panier </button>
-                    <p></p>
-
-                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center"> Article 7 </p>
-                    <p> Get this product for only ...€ </p>
-                    <button> Ajouter au panier </button>
-                    <p></p>
-
-                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center"> Article 11 </p>
-                    <p> Get this product for only ...€ </p>
-                    <button> Ajouter au panier </button>
-                </div>
-                <div class="col-sm">
-                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center"> Article 4 </p>
-                    <p> Get this product for only ...€ </p>
-                    <button> Ajouter au panier </button>
-                    <p></p>
-
-                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center"> Article 8  </p>
-                    <p> Get this product for only ...€ </p>
-                    <button> Ajouter au panier </button>
-                    <p></p>
-
-                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center"> Article 12 </p>
-                    <p> Get this product for only ...€ </p>
-                    <button> Ajouter au panier </button>
-                </div>
+                @endforeach
             </div>
         </div>
     </html>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Image_events;
-use Faker\Provider\DateTime as DateTime;
 use Illuminate\Http\Request;
 use App\EventModel;
 
@@ -25,14 +24,18 @@ class EventsController extends Controller
         $events = EventModel::all()->where('events_date', '>', date('Y-m-d h:i:s', time()))->sortBy('events_date');
         $pastevents = EventModel::all()->where('events_date', '<', date('Y-m-d h:i:s', time()))->sortBy('events_date');;
         $imgs = Image_events::all();
-
-        return view('pages.evenement', ['events' => $events, 'pastevents' => $pastevents, 'imgs' => $imgs]);
+        $date="Seclected";
+        $name="";
+        return view('pages.evenement', ['events' => $events,'pastevents'=>$pastevents,'imgs'=> $imgs,'date' =>$date, 'name' => $name ]);
     }
 
     public function indexN()
     {
-        //$events = EventModel::select('title','description','events_date')->find(1);
-        $events = EventModel::all()->sortBy('title');
-        return view('pages.evenement')->with('events', $events);
+        $events = EventModel::all()->where('events_date', '>', date('Y-m-d h:i:s', time()))->sortBy('title');
+        $pastevents = EventModel::all()->where('events_date', '<', date('Y-m-d h:i:s', time()))->sortBy('title');;
+        $imgs = Image_events::all();
+        $date="";
+        $name="Selected";
+        return view('pages.evenement',['events' => $events,'pastevents'=>$pastevents,'imgs'=> $imgs,'date' =>$date, 'name' => $name ]);
     }
 }

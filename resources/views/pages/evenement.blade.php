@@ -12,7 +12,8 @@
 
 @section('content')
     <script>
-        function wololo(element) {
+        function updated(element) {
+           
             let idx = element.selectedIndex;
             let val = element.options[idx].value;
 
@@ -35,10 +36,9 @@
                        </div>
                        <div class="dropdown  text-right col-8 ">
                            <span>Trier par : </span>
-                           <select id="select" name="tri" class="custom-select" style="width:100px;" onchange="wololo(this)">
-                               <option selected>Choice</option>
-                               <option value="eve">Date</option>
-                               <option value="even">Nom</option>
+                           <select id="select" name="tri" class="custom-select" style="width:100px;" onchange="updated(this)">
+                               <option {{$date}} value="eve">Date</option>
+                               <option {{$name}} value="even">Nom</option>
                            </select>
                    </div>
                </div>

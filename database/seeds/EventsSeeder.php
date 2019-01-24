@@ -24,7 +24,6 @@ class EventsSeeder extends Seeder
                 'post_date' => new DateTime(),
                 'is_recurrent' => false,
                 'is_free' => false,
-                'to_come_up' => true,
                 'likes_number' => 8,
                 'comments_number' => 12,
                 'id_images_events' => 1
@@ -37,7 +36,6 @@ class EventsSeeder extends Seeder
                 'post_date' => new DateTime(),
                 'is_recurrent' => true,
                 'is_free' => true,
-                'to_come_up' => true,
                 'likes_number' => 0,
                 'comments_number' => 30,
                 'id_images_events' => 2
@@ -50,7 +48,6 @@ class EventsSeeder extends Seeder
                 'post_date' => new DateTime(),
                 'is_recurrent' => false,
                 'is_free' => true,
-                'to_come_up' => false,
                 'likes_number' => 67,
                 'comments_number' => 21,
                 'id_images_events' => 3

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class BoutiqueController extends Controller
 {
@@ -20,6 +21,7 @@ class BoutiqueController extends Controller
      */
     public function index()
     {
-        return view('pages.boutique');
+        $product=Product::all();
+        return view('pages.boutique', ['product' => $product]);
     }
 }
