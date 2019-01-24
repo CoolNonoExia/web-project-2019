@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Image_events;
+use Faker\Provider\DateTime as DateTime;
 use Illuminate\Http\Request;
 use App\EventModel;
 
@@ -21,9 +22,11 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = EventModel::all()->sortBy('events_date');
+        $events = EventModel::all()->where('events_date', '>', date('Y-m-d h:i:s', time()))->sortBy('events_date');
+        $pastevents = EventModel::all()->where('events_date', '<', date('Y-m-d h:i:s', time()))->sortBy('events_date');;
+        $imgs = Image_events::all();
 
-        return view('pages.evenement')->with('events', $events);//, ['events' => $events]);
+        return view('pages.evenement', ['events' => $events, 'pastevents' => $pastevents, 'imgs' => $imgs]);
     }
 
     public function indexN()
