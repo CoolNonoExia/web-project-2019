@@ -30,11 +30,11 @@
        <div class="row justify-content-center">
            <div class="col-8">
                <div class="row">
-                       <div class="custom-control custom-switch col-4">
+                       <div class="custom-control custom-switch col">
                            <input type="checkbox" checked="checked" class="custom-control-input" id="customSwitch1">
                            <label class="custom-control-label" for="customSwitch1">Evenements passés</label>
                        </div>
-                       <div class="dropdown  text-right col-8 ">
+                       <div class="dropdown  text-right col">
                            <span>Trier par : </span>
                            <select id="select" name="tri" class="custom-select" style="width:100px;" onchange="updated(this)">
                                <option {{$date}} value="eve">Date</option>
