@@ -43,6 +43,16 @@ class ProductsSeeder extends Seeder
                 'id_categories' => 1,
                 'id_images_products' => 3
             ]);
+
+            DB::table('products')->insert([
+                'name' => 'Black edition',
+                'description' => 'Un PC portable "potable" !',
+                'price' => '1',
+                'in_stock' => 1,
+                'id_categories' => 15,
+                'id_images_products' => 4
+            ]);
+
         } catch (Exception $e) {
             echo $e;
         }

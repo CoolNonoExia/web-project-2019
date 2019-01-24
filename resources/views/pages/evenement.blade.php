@@ -40,7 +40,7 @@
                                <option {{$date}} value="eve">Date</option>
                                <option {{$name}} value="even">Nom</option>
                            </select>
-                   </div>
+                       </div>
                </div>
            </div>
        </div>

@@ -21,7 +21,17 @@ class BoutiqueController extends Controller
      */
     public function index()
     {
-        $product=Product::all();
-        return view('pages.boutique', ['product' => $product]);
+        $product=Product::all()->sortBy('name');
+        $name="Selected";
+        $price="";
+        return view('pages.boutique', ['product' => $product, 'name' => $name, 'price' => $price]);
+    }
+
+    public function indexP()
+    {
+        $product=Product::all()->sortBy('price');
+        $name="";
+        $price="Selected";
+        return view('pages.boutique', ['product' => $product, 'name' => $name, 'price' => $price]);
     }
 }

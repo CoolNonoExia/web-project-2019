@@ -11,10 +11,24 @@
 @endsection
 
 @section('content')
-    <html>
+
+    <script>
+        function updated(element) {
+
+            let idx = element.selectedIndex;
+            let val = element.options[idx].value;
+
+            if(val==='name')
+            {
+                location.replace('{{route('boutique')}}');
+            } else {
+                location.replace('{{route('boutiqueP')}}');
+            }
+        }
+    </script>
+
     <p style="text-align: center; color: #101010; font-size: larger"><b> ILS NE SERONT BIENTOT PLUS EN STOCK !</b></p>
     <hr>
-    </html>
     <div id="carousel-home" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carousel-home" data-slide-to="0" class="active"></li>
@@ -49,22 +63,114 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <html>
-        <hr size="8"; align="center"; width="100%">
-        <p style="text-align: left">Notre boutique propose une collection d'article qui dépassent l'entendement !</p>
-        <div class="container">
-            <div class="row">
-                @foreach($product as $products)
-                <div class="col-sm">
-                    <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                    <p style="text-align: center">  {{$products['name']}} </p>
-                    <p>{{$products['description']}}</p>
-                    <p> Get this product for only {{$products['price']}}€ </p>
-                    <button class="btn btn-blue"> Ajouter au panier </button>
-                    <p></p>
-                </div>
-                @endforeach
+
+    <hr size="8" align="center" width="100%">
+    <span style="text-align: left">Notre boutique propose une collection d'article qui dépassent l'entendement !</span>
+    <div class="dropdown  text-right col-12 ">
+        <span>Trier par : </span>
+        <select id="select" name="tri" class="custom-select" style="width:100px;" onchange="updated(this)">
+            <option {{$name}} value="name">Nom</option>
+            <option {{$price}} value="price">Prix</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                <label class="form-check-label" for="exampleRadios1">
+                    Tout
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <label class="form-check-label" for="exampleRadios2">
+                    Vêtement
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <label class="form-check-label" for="exampleRadios2">
+                    Informatique
+                </label>
             </div>
         </div>
-    </html>
+        <div class="col-8"><div class="row">
+            @foreach($product as $products)
+            <div class="col">
+                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <p style="text-align: center">  {{$products['name']}} </p>
+                <p>{{$products['description']}}</p>
+                <p> Get this product for only {{$products['price']}}€ </p>
+                <button class="btn btn-blue"> Ajouter au panier </button>
+                <p></p>
+
+                {{--<img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <p style="text-align: center"> Article 5 </p>
+                <p> Get this product for only ...€ </p>
+                <button> Ajouter au panier </button>
+                <p></p>
+
+                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <p style="text-align: center"> Article 9 </p>
+                <p> Get this product for only ...€ </p>
+                <button> Ajouter au panier </button>--}}
+            </div>
+            @endforeach
+            {{--<div class="col-sm">
+                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <p style="text-align: center"> Article 2 </p>
+                <p> Get this product for only ...€ </p>
+                <button> Ajouter au panier </button>
+                <p></p>
+
+                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <p style="text-align: center"> Article 6 </p>
+                <p> Get this product for only ...€ </p>
+                <button> Ajouter au panier </button>
+                <p></p>
+
+                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <p style="text-align: center"> Article 10 </p>
+                <p> Get this product for only ...€ </p>
+                <button> Ajouter au panier </button>
+            </div>
+            <div class="col-sm">
+                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <p style="text-align: center"> Article 3 </p>
+                <p> Get this product for only ...€ </p>
+                <button> Ajouter au panier </button>
+                <p></p>
+
+                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <p style="text-align: center"> Article 7 </p>
+                <p> Get this product for only ...€ </p>
+                <button> Ajouter au panier </button>
+                <p></p>
+
+                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <p style="text-align: center"> Article 11 </p>
+                <p> Get this product for only ...€ </p>
+                <button> Ajouter au panier </button>
+            </div>
+            <div class="col-sm">
+                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <p style="text-align: center"> Article 4 </p>
+                <p> Get this product for only ...€ </p>
+                <button> Ajouter au panier </button>
+                <p></p>
+
+                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <p style="text-align: center"> Article 8  </p>
+                <p> Get this product for only ...€ </p>
+                <button> Ajouter au panier </button>
+                <p></p>
+
+                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <p style="text-align: center"> Article 12 </p>
+                <p> Get this product for only ...€ </p>
+                <button> Ajouter au panier </button>
+            </div>--}}
+            </div></div>
+    </div>
 @endsection
