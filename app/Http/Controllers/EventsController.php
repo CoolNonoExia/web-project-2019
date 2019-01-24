@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Image_events;
 use Illuminate\Http\Request;
-use App\Event;
+use App\EventModel;
 
 class EventsController extends Controller
 {
@@ -20,16 +21,15 @@ class EventsController extends Controller
      */
     public function index()
     {
-        //$event= Event::select('title','description','events_date')->find(1);
-        $event=Event::all()->sortBy('events_date');
-        return view('pages.evenement')->withEvent($event);
+        $events = EventModel::all()->sortBy('events_date');
 
+        return view('pages.evenement')->with('events', $events);//, ['events' => $events]);
     }
+
     public function indexN()
     {
-        //$event= Event::select('title','description','events_date')->find(1);
-        $event=Event::all()->sortBy('title');
-        return view('pages.evenement')->withEvent($event);
-
+        //$events = EventModel::select('title','description','events_date')->find(1);
+        $events = EventModel::all()->sortBy('title');
+        return view('pages.evenement')->with('events', $events);
     }
 }
