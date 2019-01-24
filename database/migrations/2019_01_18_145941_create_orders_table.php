@@ -15,10 +15,15 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('id_users');
-            $table->integer('quantity');
+            $table->bigInteger('id_users')->unsigned();
+            $table->integer('quantity')->unsigned();
             $table->boolean('paypal');
-            $table->bigInteger('id_products');
+            $table->bigInteger('id_products')->unsigned();
+            $table->foreign('id_products')
+                ->references('id')
+                ->on('users')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
         });
     }
 
@@ -29,6 +34,9 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
+        Schema::table('orders', function(Blueprint $table) {
+            $table->dropForeign('orders_id_products_foreign');
+        });
         Schema::dropIfExists('orders');
     }
 }
