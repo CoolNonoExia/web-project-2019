@@ -26,3 +26,6 @@ Route::get('boutique/{id}', 'BoutiqueController@article')->name('boutiqueSpe');
 Route::get('event', 'EventsController@index')->name('eve');
 
 Route::get('eventN', 'EventsController@indexN')->name('even');
+
+Route::get('panier', 'PanierController@index')->name('panier');
+Route::get('idea', 'IdeaController@index')->name('idea');
