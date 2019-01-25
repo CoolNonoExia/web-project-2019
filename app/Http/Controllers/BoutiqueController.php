@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\Image_products;
+use App\Order;
 
 class BoutiqueController extends Controller
 {
@@ -61,6 +62,8 @@ class BoutiqueController extends Controller
     public function index(){
 
         $imgs=Image_products::all();
+        /*$carousel=Order::all()->co*/
+        /*Requête SQL pour le carousel ! SELECT id_products, SUM(quantity) AS q FROM `orders` GROUP BY id_products ORDER BY q DESC LIMIT 3 */
         $tri = 0;
         $product=Product::all()->sortBy('name');
         $categories=Category::all();
