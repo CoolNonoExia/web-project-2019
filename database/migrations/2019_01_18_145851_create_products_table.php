@@ -20,10 +20,15 @@ class CreateProductsTable extends Migration
             $table->double('price')->unsigned();
             $table->boolean('in_stock');
             $table->bigInteger('id_categories')->unsigned();
+            $table->foreign('id_categories')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
             $table->bigInteger('id_images_products')->unsigned();
             $table->foreign('id_images_products')
                 ->references('id')
-                ->on('users')
+                ->on('images_products')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
         });

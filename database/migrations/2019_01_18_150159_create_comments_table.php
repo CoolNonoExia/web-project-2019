@@ -19,7 +19,7 @@ class CreateCommentsTable extends Migration
             $table->bigInteger('id_events')->unsigned();
             $table->foreign('id_events')
                 ->references('id')
-                ->on('users')
+                ->on('events')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
         });

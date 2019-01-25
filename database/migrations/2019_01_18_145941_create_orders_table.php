@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('id_products')->unsigned();
             $table->foreign('id_products')
                 ->references('id')
-                ->on('users')
+                ->on('products')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
         });

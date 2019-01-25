@@ -19,7 +19,7 @@ class CreateVotesTable extends Migration
             $table->bigInteger('id_suggestion_box')->unsigned();
             $table->foreign('id_suggestion_box')
                 ->references('id')
-                ->on('users')
+                ->on('suggestion_box')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
         });

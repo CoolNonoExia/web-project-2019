@@ -14,7 +14,6 @@
 
     <script>
         function updated(element) {
-
             let idx = element.selectedIndex;
             let val = element.options[idx].value;
 
@@ -26,6 +25,25 @@
                 location.replace('{{route('boutiqueSpe',$id=2)}}');
             }
         }
+
+        function onradiobtn(element) {
+
+
+            let id = element.id;
+
+            console.log(id);
+
+            if(id == 0)
+            {
+                location.replace('{{route('boutique')}}');
+
+            }else{
+                location.replace('{{ route('boutique') }}/T'+id);
+
+            }
+        }
+
+
     </script>
 
     <p style="text-align: center; color: #101010; font-size: larger"><b> ILS NE SERONT BIENTOT PLUS EN STOCK !</b></p>
@@ -78,25 +96,28 @@
     <div class="row">
         <div class="col-2">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                <label class="form-check-label" for="exampleRadios1">
+                <input class="form-check-input" type="radio" name="cat" id="0" value="all" onclick="onradiobtn(this)" {{ $tri == 0 ? $check : $uncheck}}>
+                <label class="form-check-label" for="0">
                     Tout
                 </label>
             </div>
+            @foreach($categories as $category)
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">
-                    Vêtement
+                <input class="form-check-input" type="radio" name="cat" id="{{$category['id']}}" value="option" onclick="onradiobtn(this)"{{ $category['id'] == $tri ? $check : $uncheck }}>
+                <label class="form-check-label" for="{{$category['id']}}">
+                    {{$category['name']}}
                 </label>
             </div>
-            <div class="form-check">
+            @endforeach
+           {{-- <div class="form-check">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
                 <label class="form-check-label" for="exampleRadios2">
                     Informatique
                 </label>
-            </div>
+            </div>--}}
         </div>
-        <div class="col-8"><div class="row">
+        <div class="col-8">
+            <div class="row">
             @foreach($product as $products)
             <div class="col">
                 <img class="img-fluid" src='{{asset('/images/sweat.png')}}' alt="Responsive image">
@@ -105,17 +126,6 @@
                 <p> Get this product for only {{$products['price']}}€ </p>
                 <button class="btn btn-blue"> Ajouter au panier </button>
                 <p></p>
-
-                {{--<img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                <p style="text-align: center"> Article 5 </p>
-                <p> Get this product for only ...€ </p>
-                <button> Ajouter au panier </button>
-                <p></p>
-
-                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                <p style="text-align: center"> Article 9 </p>
-                <p> Get this product for only ...€ </p>
-                <button> Ajouter au panier </button>--}}
             </div>
             @endforeach
             {{--<div class="col-sm">

@@ -19,7 +19,8 @@ Route::get('/home', 'HomeController@index')->name('log');
 
 Route::get('/', 'AccueilController@index')->name('home');
 
-Route::get('boutique','BoutiqueController@articles')->name('boutique');
+Route::get('boutique', 'BoutiqueController@index')->name('boutique');
+Route::get('boutique/T{tri}','BoutiqueController@articles')->name('boutiqueT')->where('tri', '[0-9]+');
 Route::get('boutique/{id}', 'BoutiqueController@article')->name('boutiqueSpe');
 
 Route::get('event', 'EventsController@index')->name('eve');

@@ -22,7 +22,7 @@ class CreateSuggestionBoxTable extends Migration
             $table->bigInteger('id_images_events')->unsigned();
             $table->foreign('id_images_events')
                 ->references('id')
-                ->on('users')
+                ->on('images_events')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
         });
