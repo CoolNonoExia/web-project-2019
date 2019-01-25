@@ -31,13 +31,13 @@ class BoutiqueController extends Controller
 
             $name="Selected";
             $price="";
-            return view('pages.boutique', ['product' => $product, 'name' => $name, 'price' => $price, 'categories' => $categories]);
+            return view('pages.boutique', ['products' => $product, 'name' => $name, 'price' => $price, 'categories' => $categories]);
         }if ($id ==2)
         {
             $product=Product::all()->sortBy('price');
             $name="";
             $price="Selected";
-            return view('pages.boutique', ['product' => $product, 'name' => $name, 'price' => $price, 'categories' => $categories]);
+            return view('pages.boutique', ['products' => $product, 'name' => $name, 'price' => $price, 'categories' => $categories]);
         }
 
     }
@@ -53,7 +53,7 @@ class BoutiqueController extends Controller
             /*$product=Product::all()->sortBy('price');*/
             $name = "";
             $price = "Selected";
-            return view('pages.boutique', ['product' => $products, 'name' => $name, 'price' => $price, 'categories' => $categories, 'check' => $check,'uncheck' => $uncheck, 'tri' => $tri]);
+            return view('pages.boutique', ['products' => $products, 'name' => $name, 'price' => $price, 'categories' => $categories, 'check' => $check,'uncheck' => $uncheck, 'tri' => $tri]);
 
     }
 
@@ -65,6 +65,6 @@ class BoutiqueController extends Controller
         $uncheck="";
         $name="Selected";
         $price="";
-        return view('pages.boutique', ['product' => $product, 'name' => $name, 'price' => $price, 'categories' => $categories,'check' => $check, 'uncheck' => $uncheck, 'tri' => $tri]);
+        return view('pages.boutique', ['products' => $product, 'name' => $name, 'price' => $price, 'categories' => $categories,'check' => $check, 'uncheck' => $uncheck, 'tri' => $tri]);
     }
 }
