@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call('Images_eventsSeeder');
         $this->call('ProductsSeeder');
         $this->call('CategoriesSeeder');
+        $this->call('Images_productsSeeder');
     }
 }

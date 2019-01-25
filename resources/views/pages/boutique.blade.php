@@ -48,35 +48,37 @@
 
     <p style="text-align: center; color: #101010; font-size: larger"><b> ILS NE SERONT BIENTOT PLUS EN STOCK !</b></p>
     <hr>
-    <div id="carousel-home" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-home" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-home" data-slide-to="1"></li>
-            <li data-target="#carousel-home" data-slide-to="2"></li>
+    <div class="row">
+        <div id="carousel-home" class="carousel slide col-4 offset-4" data-ride="carousel";>
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-home" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-home" data-slide-to="1"></li>
+                <li data-target="#carousel-home" data-slide-to="2"></li>
 
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src='{{asset('/images/sweat.png')}}' alt="First slide" height="">
-                <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 1: ...€ </b></div>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src='{{asset('/images/sweat.png')}}' alt="First slide">
+                    <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 1: ...€ </b></div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src='{{asset('/images/sweat.png')}}' alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 2: ...€ </b></div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src='{{asset('/images/sweat.png')}}' alt="Third slide">
+                    <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 3: ...€</b></div>
+                </div>
             </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src='{{asset('/images/sweat.png')}}' alt="Second slide">
-                <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 2: ...€ </b></div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src='{{asset('/images/sweat.png')}}' alt="Third slide">
-                <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 3: ...€</b></div>
-            </div>
+            <a class="carousel-control-prev" href="#carousel-home" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-home" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-        <a class="carousel-control-prev" href="#carousel-home" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carousel-home" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
 
     <hr size="8" align="center" width="100%">
@@ -91,32 +93,27 @@
 
     <div class="row">
         <div class="col-2">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="cat" id="0" value="all" onclick="onradiobtn(this)" {{ $tri == 0 ? $check : $uncheck}}>
-                <label class="form-check-label" for="0">
+            <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" name="cat" id="0" value="all" onclick="onradiobtn(this)" {{ $tri == 0 ? $check : $uncheck}}>
+                <label class="custom-control-label" for="0">
                     Tout
                 </label>
             </div>
             @foreach($categories as $category)
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="cat" id="{{$category['id']}}" value="option" onclick="onradiobtn(this)"{{ $category['id'] == $tri ? $check : $uncheck }}>
-                <label class="form-check-label" for="{{$category['id']}}">
+            <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" name="cat" id="{{$category['id']}}" value="option" onclick="onradiobtn(this)"{{ $category['id'] == $tri ? $check : $uncheck }}>
+                <label class="custom-control-label" for="{{$category['id']}}">
                     {{$category['name']}}
                 </label>
             </div>
             @endforeach
-           {{-- <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">
-                    Informatique
-                </label>
-            </div>--}}
         </div>
         <div class="col-8">
             <div class="row">
             @foreach($products as $product)
-            <div class="col">
-                <img class="img-fluid" src='{{asset('/images/sweat.png')}}' alt="Responsive image">
+            <div class="col" >
+                <?php $img = $imgs->find($product['id_images_products']) ?>
+                <img class="img-fluid" src="{{asset('img\\products\\'.$img['id'].'.'.$img['ext'])}}" alt="Responsive image" style="max-width:250px; max-height: 150px";>
                 <p style="text-align: center">  {{$product['name']}} </p>
                 <p>{{$product['description']}}</p>
                 <p> Get this product for only {{$product['price']}}€ </p>
@@ -124,60 +121,6 @@
                 <p></p>
             </div>
             @endforeach
-            {{--<div class="col-sm">
-                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                <p style="text-align: center"> Article 2 </p>
-                <p> Get this product for only ...€ </p>
-                <button> Ajouter au panier </button>
-                <p></p>
-
-                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                <p style="text-align: center"> Article 6 </p>
-                <p> Get this product for only ...€ </p>
-                <button> Ajouter au panier </button>
-                <p></p>
-
-                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                <p style="text-align: center"> Article 10 </p>
-                <p> Get this product for only ...€ </p>
-                <button> Ajouter au panier </button>
-            </div>
-            <div class="col-sm">
-                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                <p style="text-align: center"> Article 3 </p>
-                <p> Get this product for only ...€ </p>
-                <button> Ajouter au panier </button>
-                <p></p>
-
-                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                <p style="text-align: center"> Article 7 </p>
-                <p> Get this product for only ...€ </p>
-                <button> Ajouter au panier </button>
-                <p></p>
-
-                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                <p style="text-align: center"> Article 11 </p>
-                <p> Get this product for only ...€ </p>
-                <button> Ajouter au panier </button>
-            </div>
-            <div class="col-sm">
-                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                <p style="text-align: center"> Article 4 </p>
-                <p> Get this product for only ...€ </p>
-                <button> Ajouter au panier </button>
-                <p></p>
-
-                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                <p style="text-align: center"> Article 8  </p>
-                <p> Get this product for only ...€ </p>
-                <button> Ajouter au panier </button>
-                <p></p>
-
-                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
-                <p style="text-align: center"> Article 12 </p>
-                <p> Get this product for only ...€ </p>
-                <button> Ajouter au panier </button>
-            </div>--}}
             </div></div>
     </div>
 @endsection
