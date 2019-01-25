@@ -20,9 +20,10 @@
 
             if(val==='name')
             {
-                location.replace('{{route('boutique')}}');
+
+                location.replace('{{route('boutiqueSpe',$id=1)}}');
             } else {
-                location.replace('{{route('boutiqueP')}}');
+                location.replace('{{route('boutiqueSpe',$id=2)}}');
             }
         }
     </script>
@@ -98,7 +99,7 @@
         <div class="col-8"><div class="row">
             @foreach($product as $products)
             <div class="col">
-                <img class="img-fluid" src="./images/sweat.png" alt="Responsive image">
+                <img class="img-fluid" src='{{asset('/images/sweat.png')}}' alt="Responsive image">
                 <p style="text-align: center">  {{$products['name']}} </p>
                 <p>{{$products['description']}}</p>
                 <p> Get this product for only {{$products['price']}}€ </p>

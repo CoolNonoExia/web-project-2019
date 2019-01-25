@@ -13,7 +13,8 @@ class ProductsSeeder extends Seeder
     public function run()
     {
         // Clear our events table
-        DB::table('products')->delete();
+        DB::table('products')->truncate();
+
 
         try{
             // Seed our events table
@@ -22,7 +23,7 @@ class ProductsSeeder extends Seeder
                 'description' => 'Piscine de Yoyo, parfait pur les enfants de 3 à 6 ans !',
                 'price' => '35000',
                 'in_stock' => 1,
-                'id_categories' => 12,
+                'id_categories' => 3,
                 'id_images_products' => 1
             ]);
 
@@ -31,7 +32,7 @@ class ProductsSeeder extends Seeder
                 'description' => 'Mug élégant et léger. Soutenez votre BDE même lorsque vous buvez !',
                 'price' => '25',
                 'in_stock' => 1,
-                'id_categories' => 10,
+                'id_categories' => 3,
                 'id_images_products' => 2
             ]);
 
@@ -40,7 +41,7 @@ class ProductsSeeder extends Seeder
                 'description' => 'Design, confortable hésiter plus et jetez vous sur ce superbe sweat !',
                 'price' => '55',
                 'in_stock' => 1,
-                'id_categories' => 1,
+                'id_categories' => 2,
                 'id_images_products' => 3
             ]);
 
@@ -49,7 +50,7 @@ class ProductsSeeder extends Seeder
                 'description' => 'Un PC portable "potable" !',
                 'price' => '1',
                 'in_stock' => 1,
-                'id_categories' => 15,
+                'id_categories' => 1,
                 'id_images_products' => 4
             ]);
 

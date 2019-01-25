@@ -13,7 +13,8 @@ class Images_eventsSeeder extends Seeder
     public function run()
     {
         // Clear our images_events table
-        DB::table('images_events')->delete();
+        DB::table('images_events')->truncate();
+
 
         try{
             // Seed our events table

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Product;
 
@@ -19,15 +20,25 @@ class BoutiqueController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function article($id)
     {
-        $product=Product::all()->sortBy('name');
-        $name="Selected";
-        $price="";
-        return view('pages.boutique', ['product' => $product, 'name' => $name, 'price' => $price]);
+        if($id == 1)
+        {
+            $product=Product::all()->sortBy('name');
+            $name="Selected";
+            $price="";
+            return view('pages.boutique', ['product' => $product, 'name' => $name, 'price' => $price]);
+        }if ($id ==2)
+        {
+            $product=Product::all()->sortBy('price');
+            $name="";
+            $price="Selected";
+            return view('pages.boutique', ['product' => $product, 'name' => $name, 'price' => $price]);
+        }
+
     }
 
-    public function indexP()
+    public function articles()
     {
         $product=Product::all()->sortBy('price');
         $name="";
