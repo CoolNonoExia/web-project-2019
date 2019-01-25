@@ -1,25 +1,25 @@
 <!doctype html>
 <html>
-<head>
-    @include('includes.head')
-</head>
-<body>
-<div>
+    <head>
+        @include('includes.head')
+    </head>
+    <body>
+        <div>
 
-    <header class="container-fluid">
-        @include('includes.header')
-    </header>
+            <header class="container-fluid">
+                @include('includes.header')
+            </header>
 
-    <div id="main" class="container-fluid">
+            <div id="main" class="container-fluid">
 
-        @yield('content')
+                @yield('content')
 
-    </div>
+            </div>
 
-    <footer class="container-fluid">
-        @include('includes.footer')
-    </footer>
+            <footer class="container-fluid">
+                @include('includes.footer')
+            </footer>
 
-</div>
-</body>
+        </div>
+    </body>
 </html>

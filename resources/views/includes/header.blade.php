@@ -1,7 +1,7 @@
 <style>
     header
     {
-        background-color: #101010;
+        background-color: #333;
     }
     header {margin-bottom: 30px;}
     header .btn {margin: 5px;}

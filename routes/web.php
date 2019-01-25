@@ -11,9 +11,8 @@
 |
 */
 
-
+// Authentification routes
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('log');
 
 
@@ -26,7 +25,3 @@ Route::get('boutiqueP','BoutiqueController@indexP')->name('boutiqueP');
 Route::get('event', 'EventsController@index')->name('eve');
 
 Route::get('eventN', 'EventsController@indexN')->name('even');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

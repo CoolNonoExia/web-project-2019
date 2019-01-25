@@ -9,7 +9,7 @@
     .btn.m:hover {color: #D74C40;}
     .btn.i:hover {color: #8D4AC2;}
     footer {
-        background-color: #101010;
+        background-color: #333;
         padding: 20px;
     }
     footer {margin-top: 60px;}
