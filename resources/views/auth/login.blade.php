@@ -16,9 +16,8 @@
         }
         #card {
             box-shadow: 0px 0px 15px #101010;
-            background-color: #505050;
+            background-color: #111;
             background-image: linear-gradient(135deg, #679, #111);
-            /*background-image: linear-gradient(#505050, #333);*/
             border: 0px;
         }
     </style>

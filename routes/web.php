@@ -12,10 +12,14 @@
 */
 
 // Authentification routes
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('log');
+//Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('log');
 
+Route::get('register', 'AuthController@getRegistrationForm')->name('register');
+Route::post('register', 'AuthController@postRegistrationForm')->name('register');
 
+Route::get('login', 'AuthController@getLoginForm')->name('login');
+Route::post('login', 'AuthController@postLoginForm')->name('login');
 
 Route::get('/', 'AccueilController@index')->name('home');
 
@@ -29,3 +33,6 @@ Route::get('eventN', 'EventsController@indexN')->name('even');
 
 Route::get('panier', 'PanierController@index')->name('panier');
 Route::get('idea', 'IdeaController@index')->name('idea');
+
+//TODO: delete later
+Route::get('testing', 'AccueilController@testget');

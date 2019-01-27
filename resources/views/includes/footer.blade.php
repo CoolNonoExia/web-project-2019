@@ -9,7 +9,10 @@
     .btn.m:hover {color: #D74C40;}
     .btn.i:hover {color: #8D4AC2;}
     footer {
-        background-color: #333;
+        box-shadow: 0px 0px 15px #101010;
+        background-color: #111;
+        background-image: linear-gradient(180deg, #679, #111);
+        border: 0px;
         padding: 20px;
     }
     footer {margin-top: 60px;}
