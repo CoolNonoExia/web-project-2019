@@ -24,6 +24,7 @@
             background-color: #111;
             background-image: linear-gradient(135deg, #679, #111);
             border: 0px;
+            margin: 20px;
         }
     </style>
 
@@ -151,7 +152,7 @@
 
     <script>
         function onResize(){
-            cardH = $('#card').height();
+            cardH = $('#card').height() + 40;
             winH = $(window).height();
             $('.resize').height(
                 // cardH < winH ? (winH - cardH)/2 : 0
