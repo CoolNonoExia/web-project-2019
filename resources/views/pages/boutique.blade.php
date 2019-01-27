@@ -45,8 +45,8 @@
 
 
     </script>
-
-    <p style="text-align: center; color: #101010; font-size: larger"><b> ILS NE SERONT BIENTOT PLUS EN STOCK !</b></p>
+    @if($carousel != "")
+    <p style="text-align: center; color: #101010; font-size: larger"><b> ILS NE SERONT BIENTOT PLUS EN STOCK ! </b></p>
     <hr>
     <div class="row">
         <div id="carousel-home" class="carousel slide col-4 offset-4" data-ride="carousel";>
@@ -56,19 +56,20 @@
                 <li data-target="#carousel-home" data-slide-to="2"></li>
 
             </ol>
+
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img class="d-block w-100" src='{{asset('img\\products\\sweat.png')}}' alt="First slide">
-                    <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 1: ...€ </b></div>
+                    <div class="carousel-caption d-none d-md-block" style="color: #9b000c"></div>
                 </div>
+                @foreach($carousel as $carousels)
+
                 <div class="carousel-item">
-                    <img class="d-block w-100" src='{{asset('img\\products\\sweat.png')}}' alt="Second slide">
-                    <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 2: ...€ </b></div>
+                    <?php $img = $imgs->find($carousels['id_products']) ?>
+                    <img class="d-block w-100" src="{{asset('img\\products\\'.$img['id'].'.'.$img['ext'])}}" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block" style="color: #9b000c"></div>
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src='{{asset('img\\products\\sweat.png')}}' alt="Third slide">
-                    <div class="carousel-caption d-none d-md-block" style="color: #9b000c"><b> Article 3: ...€</b></div>
-                </div>
+                @endforeach
             </div>
             <a class="carousel-control-prev" href="#carousel-home" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -78,9 +79,10 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+
         </div>
     </div>
-
+    @endif
     <hr size="8" align="center" width="100%">
     <span style="text-align: left">Notre boutique propose une collection d'article qui dépassent l'entendement !</span>
     <div class="dropdown  text-right col-12 ">
