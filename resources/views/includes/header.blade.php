@@ -67,6 +67,7 @@
         </div>
     </div>
     @if(session()->has('logged_in') && session('logged_in'))
+        {{--<i class="fas fa-tools"></i>--}}
         <div class="col-md-1 col-lg-2">
             <div class="row justify-content-end" style="padding-right: 10px">
                 <a href="{{ route('panier') }}"><button class="btn {{ Request::route()->getName() == 'panier' ? 'btn-warning' : 'btn-outline-warning' }}" style="font-size: 34px"><i class="fas fa-shopping-cart"></i></button></a>
@@ -76,17 +77,38 @@
             <div class="text-right text-white">
                 {{ session('first_name') }}
             </div>
-            <div class="row justify-content-end" style="padding-right: 10px">
-                <a href="{{ route('logout') }}"><button class="btn btn-outline-warning">Déconnexion</button></a>
+            <div class="dropdown">
+                <button class="btn btn-outline-warning dropdown-toggle" type="button" id="ddlOptions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Options
+                </button>
+                <div class="dropdown-menu" aria-labelledby="ddlOptions">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a href="{{ route('logout') }}"><button class="btn btn-outline-warning">Déconnexion <i class="fas fa-sign-out-alt"></i></button></a>
+                </div>
+                {{--<div class="btn-group">
+                    <button type="button" class="btn btn-danger">Action</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </div>--}}
             </div>
         </div>
     @else
         <div class="col-3">
             <div class="row justify-content-end" style="padding-right: 10px">
-                <a href="{{ route('login') }}"><button class="btn btn-outline-warning">Connexion</button></a>
+                <a href="{{ route('login') }}"><button class="btn btn-outline-warning">Connexion <i class="fas fa-sign-in-alt"></i></button></a>
             </div>
             <div class="row justify-content-end" style="padding-right: 10px">
-                <a href="{{ route('register') }}"><button class="btn btn-outline-warning">Inscription</button></a>
+                <a href="{{ route('register') }}"><button class="btn btn-outline-warning">Inscription <i class="fas fa-file-signature"></i></button></a>
             </div>
         </div>
     @endif

@@ -48,10 +48,10 @@
     </script>
 
    <div class="container-fluid">
-       {{--if(Admin)
-       show the button
-       else not--}}
-       <a href ="{{route('eveAdd')}}" class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un evenement ></a>
+
+       @if(session()->has('logged_in') && session('logged_in') && session('role') == 2)
+           <a href ="{{route('eveAdd')}}" class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un evenement</a>
+       @endif
        <div class="row justify-content-center">
 
            <div class="col-8">
@@ -81,7 +81,7 @@
            <div class="col-2" style="height: 150px;">
                {{-- Images --}}
                <?php $img = $imgs->find($event['id_images_events']) ?>
-               <img src="{{asset('img\\events\\'.$img['id'].'.'.$img['ext'])}}" class="img-fluid" style="max-height: 100%; max-width: 100%;" />
+               <img src="{{ asset('storage/img/events/'.$img['id'].'.'.$img['ext']) }}" class="img-fluid" style="max-height: 100%; max-width: 100%;" />
            </div>
            <div class="col-8">
                <div class="row">
@@ -120,7 +120,7 @@
                <div class="col-2" style="height: 150px;">
                    {{-- Images --}}
                    <?php $img = $imgs->find($pevent['id_images_events']) ?>
-                   <a href="{{route('eveL', '')}}\{{$pevent['id']}}" onclick="click (this)"><img  src="{{asset('img\\events\\'.$img['id'].'.'.$img['ext'])}}" class="img-fluid" style="max-height: 100%; max-width: 100%;" /></a>
+                   <a href="{{route('eveL', '')}}\{{$pevent['id']}}" onclick="click (this)"><img  src="{{ asset('storage/img/events/'.$img['id'].'.'.$img['ext']) }}" class="img-fluid" style="max-height: 100%; max-width: 100%;" /></a>
                </div>
                <div class="col-8">
                    <div class="row">

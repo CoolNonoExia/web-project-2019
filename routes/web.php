@@ -34,8 +34,8 @@ Route::get('event', 'EventsController@index')->name('eve');
 Route::get('eventN', 'EventsController@indexN')->name('even');
 Route::get('eventP', 'EventsController@Past')->name('eveP');
 Route::get('event/{id}', 'EventsController@Like')->name('eveL');
-Route::get('eventAdd', 'EventsController@Add')->name('eveAdd');
-Route::post('eventAdd', 'EventsController@Post')->name('evePost');
+Route::get('eventAdd', 'EventsController@getAdd')->name('eveAdd');
+Route::post('eventAdd', 'EventsController@postAdd')->name('eveAdd');
 
 Route::get('panier', 'PanierController@index')->name('panier');
 Route::get('idea', 'IdeaController@index')->name('idea');

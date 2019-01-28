@@ -47,19 +47,16 @@
         }
 
         function test(id) {
-
-            console.log(id);
             $.ajax({
                 url:'{{ url('/boutique/s') }}',
                 type: "post",
                 dataType: 'json',
-                data: { idPro: id },
+                data: { id_pro: id },
                 headers:
                 {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
             });
-
         }
 
 
@@ -135,10 +132,9 @@
                 <p style="text-align: center">  {{$product['name']}} </p>
                 <p>{{$product['description']}}</p>
                 <p> Get this product for only {{$product['price']}}€ </p>
-                <button class="btn btn-blue" onclick="test({{$product['id']}})">
-                    Ajouter au panier
-                </button>
-                <p></p>
+                @if(session()->has('logged_in') && session('logged_in'))
+                    <button class="btn btn-blue" onclick="test({{$product['id']}})"> Ajouter au panier </button>
+                @endif
             </div>
             @endforeach
             </div></div>

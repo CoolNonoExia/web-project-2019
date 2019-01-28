@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Suggestion_box extends Model
 {
+    public $timestamps = false;
+    
     public function votes()
     {
         return $this->hasMany('Vote', 'id_suggestion_box', 'id');

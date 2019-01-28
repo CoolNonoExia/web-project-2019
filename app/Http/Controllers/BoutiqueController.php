@@ -101,8 +101,16 @@ class BoutiqueController extends Controller
 
     public function addPanier()
     {
-        session()->put('id_pro', json_decode($_POST['idPro'], true));
-        //return "truc";
-    }
+        if(session()->has('panier'))
+        {
+            $panier = session('panier');
+        } else {
+            $panier = [];
+        }
+        array_push($panier, json_decode($_POST['id_pro'], true));
 
+        session()->put('panier', $panier);
+
+        //session()->put('panier', json_decode($_POST['id_pro'], true));
+    }
 }

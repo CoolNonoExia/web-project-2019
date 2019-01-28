@@ -28,7 +28,7 @@
         @foreach($products as $product)
         <tr>
             <td scope="row">{{$product('title')}}</td>
-            <td>{{$product('')}}</td>
+            <td>{{$product('quantity')}}</td>
             <td>{{$product('price')}}€</td>
             <td><a class="btn btn-danger" href="https://www.instagram.com/" target="_blank"><i class="fas fa-times"></i></a></td>
         </tr>

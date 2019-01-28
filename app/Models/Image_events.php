@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Image_events extends Model
 {
     protected $table = 'images_events';
+    public $timestamps = false;
 
     public function suggestion_box()
     {
