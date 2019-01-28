@@ -25,6 +25,7 @@ class CreateSuggestionBoxTable extends Migration
                 ->on('images_events')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
+            $table->bigInteger('id_user');
         });
     }
 
