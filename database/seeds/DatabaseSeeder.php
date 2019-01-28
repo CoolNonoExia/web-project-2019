@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call('Images_productsSeeder');
         $this->call('OrdersSeeder');
         $this->call('CommentsSeeder');
+        $this->call('Idea_boxSeeder');
+        $this->call('VotesSeeder');
     }
 }

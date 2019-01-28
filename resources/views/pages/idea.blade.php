@@ -12,20 +12,45 @@
     <p style="text-align: center"><b>Boîte à Idées</b></p>
     <hr>
 
-    <p style="text-align: center">Vous retrouverez ici l'ensemble des évènements proposés par les étudiants du Campus CESI de Nice</p>
-    <p style="text-align: center">N'hésitez pas à voter pour un évènement si celui-ci vous intéresse !</p>
+    <p style="text-align: center">Vous retrouverez ici l'ensemble des événements proposés par les étudiants du Campus CESI de Nice</p>
+    <p style="text-align: center">N'hésitez pas à voter pour un événement si celui-ci vous intéresse !</p>
     <p style="text-align: center">Si un événement reçoit suffisament de votes, le BDE l'organisera sûrement</p>
     <hr>
+    <div class="text-center">
+        <button class="btn btn-secondary">Ajoutez vos idées !</button>
+    </div>
+
 
     <div class="row justify-content-center">
         <div class="col-9" style="margin: 30px 0px; background-color: #1b4b72; color: white; font-weight: bold; padding:4px">
-            <p>Evenements proposés</p>
+            <p>Activités proposées</p>
         </div>
     </div>
 
-    <hr>
+    @foreach($ideas as $idea)
+        <br>
+        <div class="row">
+            <div class="col-1 bg-warning border border-secondary">
+                <span>Idée numéro {{$idea['id']}} :</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="border" style="height:50px; width: 350px;">
+                <span style="font-weight: bold">{{$idea['title']}}</span>
+                <p>{{$idea['description']}}</p>
+            </div>
+            <span><a class="btn btn-link i" target="_blank"><i class="fas fa-thumbs-up"></i></a> </span>
+            <span><a class="btn btn-link i" target="_blank"><i class="fas fa-thumbs-down"></i></a></span>
 
-    <p style="text-align: center"><b>Proposer un évènement</b></p>
+        </div>
+        @endforeach
+
+
+
+
+{{--    <hr>
+
+    <p style="text-align: center"><b>Proposer une activité</b></p>
     <form method="post" action="idea.blade.php" enctype="multipart/form-data">
         <label for="title"><b>Titre de l'évènement</b></label>
     <input type="text" name="title" value="titre" /><br>
@@ -35,7 +60,7 @@
         <label type="image"><b>Illustration évènement</b></label>
     <input type="file" name="image" value="image" /><br>
     <input style="float: right;"class="btn btn-outline-blue" type="submit" name="submit" value="Proposer" />
-    </form>
+    </form>--}}
 
     <!--?php
         $_FILES['']

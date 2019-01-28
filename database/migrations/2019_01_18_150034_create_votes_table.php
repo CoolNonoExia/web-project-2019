@@ -22,6 +22,7 @@ class CreateVotesTable extends Migration
                 ->on('suggestion_box')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
+            $table->boolean('vote');
         });
     }
 
