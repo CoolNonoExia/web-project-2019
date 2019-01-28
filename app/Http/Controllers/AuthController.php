@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     // Checks if user is connected
-    private function isConnected()
+    public static function isConnected()
     {
         return session()->has('logged_in') && session('logged_in');
     }
@@ -36,7 +36,7 @@ class AuthController extends Controller
     public function getRegistrationForm()
     {
         // If user is already connected, redirects back to home
-        if($this->isConnected())
+        if($this::isConnected())
         {
             return redirect()->route('home');
         }
@@ -87,7 +87,7 @@ class AuthController extends Controller
     public function getLoginForm()
     {
         // If user is already connected, redirects back to home
-        if($this->isConnected())
+        if($this::isConnected())
         {
             return redirect()->route('home');
         }

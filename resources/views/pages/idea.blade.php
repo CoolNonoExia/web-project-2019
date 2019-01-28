@@ -3,9 +3,10 @@
     Boîte à idée
 @endsection
 @section('navbar')
-    <a href="{{route('home')}}"><button class="btn btn-outline-blue">Accueil</button></a>
-    <a href="{{route('eve')}}"><button class="btn btn-outline-blue">Evenements</button></a>
-    <a href="{{route('boutique')}}"><button class="btn btn-outline-blue">Boutique</button></a>
+    <a href="{{route('home')}}"><button class="btn btn-outline-blue"><i class="fas fa-home"></i> Accueil</button></a>
+    <a href="{{route('eve')}}"><button class="btn btn-outline-blue"><i class="fas fa-calendar-day"></i> Evenements</button></a>
+    <a href="{{route('boutique')}}"><button class="btn btn-outline-blue"><i class="fas fa-cash-register"></i> Boutique</button></a>
+    <a href="{{ route('idea') }}"><button class="btn btn-blue"><i class="far fa-lightbulb"></i> Boîte à idées</button></a>
 @endsection
 @section('content')
     <p style="text-align: center"><b>Boîte à Idées</b></p>
@@ -13,7 +14,7 @@
 
     <p style="text-align: center">Vous retrouverez ici l'ensemble des évènements proposés par les étudiants du Campus CESI de Nice</p>
     <p style="text-align: center">N'hésitez pas à voter pour un évènement si celui-ci vous intéresse !</p>
-    <p style="text-align: center">Si un évènement reçoie suffisament de votes le BDE l'organiseras sûrement</p>
+    <p style="text-align: center">Si un événement reçoit suffisament de votes, le BDE l'organisera sûrement</p>
     <hr>
 
     <div class="row justify-content-center">

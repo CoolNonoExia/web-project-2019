@@ -49,14 +49,14 @@
 
 
 
-<div class="row">
-    <div class="col-4">
+<div class="row align-items-center">
+    <div class="col-3">
         <a href="{{route('home')}}" >
             <img src="{{ asset('img/BDE_logo.png') }}" style="max-height: 100px" />
             <span class="super-title align-middle">BDE CESI NICE</span>
         </a>
     </div>
-    <div class="col-4">
+    <div class="col-6">
         <div class="row justify-content-center">
             <span class="slogan align-middle">Le BDE, plus qu'une idée, un avenir</span>
         </div>
@@ -66,17 +66,22 @@
             </span>
         </div>
     </div>
-    @if(session('logged_in'))
-        <div class="col-4">
+    @if(session()->has('logged_in') && session('logged_in'))
+        <div class="col-md-1 col-lg-2">
+            <div class="row justify-content-end" style="padding-right: 10px">
+                <a href="{{ route('panier') }}"><button class="btn {{ Request::route()->getName() == 'panier' ? 'btn-warning' : 'btn-outline-warning' }}" style="font-size: 34px"><i class="fas fa-shopping-cart"></i></button></a>
+            </div>
+        </div>
+        <div class="col-md-2 col-lg-1">
             <div class="text-right text-white">
-                Bonjour, {{ session('first_name') }}
+                {{ session('first_name') }}
             </div>
             <div class="row justify-content-end" style="padding-right: 10px">
                 <a href="{{ route('logout') }}"><button class="btn btn-outline-warning">Déconnexion</button></a>
             </div>
         </div>
     @else
-        <div class="col-4">
+        <div class="col-3">
             <div class="row justify-content-end" style="padding-right: 10px">
                 <a href="{{ route('login') }}"><button class="btn btn-outline-warning">Connexion</button></a>
             </div>

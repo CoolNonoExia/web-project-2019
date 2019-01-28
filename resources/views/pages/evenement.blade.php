@@ -5,9 +5,12 @@
 @endsection
 
 @section('navbar')
-    <a href="{{route('home')}}"><button class="btn btn-outline-blue">Accueil</button></a>
-    <a href="{{route('eve')}}"><button class="btn btn-blue">Evenements</button></a>
-    <a href="{{route('boutique')}}"><button class="btn btn-outline-blue">Boutique</button></a>
+    <a href="{{route('home')}}"><button class="btn btn-outline-blue"><i class="fas fa-home"></i> Accueil</button></a>
+    <a href="{{route('eve')}}"><button class="btn btn-blue"><i class="fas fa-calendar-day"></i> Evenements</button></a>
+    <a href="{{route('boutique')}}"><button class="btn btn-outline-blue"><i class="fas fa-cash-register"></i> Boutique</button></a>
+    @if(session()->has('logged_in') && session('logged_in'))
+        <a href="{{ route('idea') }}"><button class="btn btn-outline-blue"><i class="far fa-lightbulb"></i> Boîte à idées</button></a>
+    @endif
 @endsection
 
 @section('content')

@@ -8,7 +8,11 @@ class IdeaController extends Controller
 {
     public function index()
     {
-        return view('pages.idea');
+        if(AuthController::isConnected())
+        {
+            return view('pages.idea');
+        }
+        return redirect()->route('home');
     }
     public function idea  ()
     {
