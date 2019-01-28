@@ -5,9 +5,12 @@
 @endsection
 
 @section('navbar')
-    <a href="{{route('home')}}"><button class="btn btn-outline-blue">Accueil</button></a>
-    <a href="{{route('eve')}}"><button class="btn btn-blue">Evenements</button></a>
-    <a href="{{route('boutique')}}"><button class="btn btn-outline-blue">Boutique</button></a>
+    <a href="{{route('home')}}"><button class="btn btn-outline-blue"><i class="fas fa-home"></i> Accueil</button></a>
+    <a href="{{route('eve')}}"><button class="btn btn-blue"><i class="fas fa-calendar-day"></i> Evenements</button></a>
+    <a href="{{route('boutique')}}"><button class="btn btn-outline-blue"><i class="fas fa-cash-register"></i> Boutique</button></a>
+    @if(session()->has('logged_in') && session('logged_in'))
+        <a href="{{ route('idea') }}"><button class="btn btn-outline-blue"><i class="far fa-lightbulb"></i> Boîte à idées</button></a>
+    @endif
 @endsection
 
 @section('content')
@@ -20,7 +23,7 @@
             <p>Ajout d'evenement </p>
         </div>
     </div>
-
+    <form method="POST" action="{{ route('evePost') }}">
     <form>
         <div class="form-group">
             <label for="exampleInputEmail1">Titre</label>
@@ -35,13 +38,13 @@
             <label for="exampleInputPassword1">Date de l'evenement</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter date">
         </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Gratuit</label>
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="exampleCheck1">
+            <label class="custom-control-label" for="exampleCheck1">Gratuit</label>
         </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Recurrent</label>
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="Check1">
+            <label class="custom-control-label" for="Check1">Recurrent</label>
         </div>
 
         <br>

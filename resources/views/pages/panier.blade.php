@@ -13,14 +13,29 @@
 @section('content')
 
     <p style="text-align: center"><b>Voici votre panier</b></p>
-    <hr>
 
-    <hr>
-    <p style="text-align: center"><b>Formulaire de commande</b></p>
-    <input type="text" name="last_name" value="Nom" />
-    <input type="text" name="first_name" value="Prénom" />
-    <input type="email" name="email" value="Adresse@email.fr" />
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Prix</th>
+            <th></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($products as $product)
+        <tr>
+            <td scope="row">{{$product('title')}}</td>
+            <td>{{$product('')}}</td>
+            <td>{{$product('price')}}€</td>
+            <td><a class="btn btn-danger" href="https://www.instagram.com/" target="_blank"><i class="fas fa-times"></i></a></td>
+        </tr>
+            @endforeach
+        </tbody>
+    </table>
 
 
     <button class="btn btn-outline-blue">Commander</button>
-@stop
+@endsection

@@ -74,7 +74,8 @@ class BoutiqueController extends Controller
 
     }
 
-    public function index(){
+    public function index()
+    {
 
         $imgs=Image_products::all();
         $carousel= DB::table('orders')
@@ -96,4 +97,12 @@ class BoutiqueController extends Controller
         $price="";
         return view('pages.boutique', ['products' => $product, 'name' => $name, 'price' => $price, 'categories' => $categories,'check' => $check, 'uncheck' => $uncheck, 'tri' => $tri, 'imgs' => $imgs, 'carousel' => $carousel, 'active' => $active]);
     }
+
+
+    public function addPanier()
+    {
+        session()->put('id_pro', json_decode($_POST['idPro'], true));
+        //return "truc";
+    }
+
 }

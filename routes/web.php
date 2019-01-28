@@ -28,12 +28,14 @@ Route::get('/', 'AccueilController@index')->name('home');
 Route::get('boutique', 'BoutiqueController@index')->name('boutique');
 Route::get('boutique/T{tri}','BoutiqueController@articles')->name('boutiqueT')->where('tri', '[0-9]+');
 Route::get('boutique/{id}', 'BoutiqueController@article')->name('boutiqueSpe');
+Route::post('/boutique/s', 'BoutiqueController@addPanier')->name('boutiqueAddPanier');
 
 Route::get('event', 'EventsController@index')->name('eve');
 Route::get('eventN', 'EventsController@indexN')->name('even');
 Route::get('eventP', 'EventsController@Past')->name('eveP');
 Route::get('event/{id}', 'EventsController@Like')->name('eveL');
 Route::get('eventAdd', 'EventsController@Add')->name('eveAdd');
+Route::post('eventAdd', 'EventsController@Post')->name('evePost');
 
 Route::get('panier', 'PanierController@index')->name('panier');
 Route::get('idea', 'IdeaController@index')->name('idea');
