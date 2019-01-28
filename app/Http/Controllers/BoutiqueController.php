@@ -39,20 +39,21 @@ class BoutiqueController extends Controller
         $check="checked";
         $uncheck="";
         $tri = 0;
+        $active=true;
         if($id == 1)
         {
             $products=Product::all()->sortBy('name');
 
             $name="Selected";
             $price="";
-            return view('pages.boutique', ['products' => $products, 'name' => $name, 'price' => $price, 'categories' => $categories, 'check' => $check,'uncheck' => $uncheck, 'tri' => $tri,'imgs' => $imgs, 'carousel' => $carousel]);
+            return view('pages.boutique', ['products' => $products, 'name' => $name, 'price' => $price, 'categories' => $categories, 'check' => $check,'uncheck' => $uncheck, 'tri' => $tri,'imgs' => $imgs, 'carousel' => $carousel, 'active' => $active]);
         }if ($id ==2)
         {
 
             $products=Product::all()->sortBy('price');
             $name="";
             $price="Selected";
-            return view('pages.boutique', ['products' => $products, 'name' => $name, 'price' => $price, 'categories' => $categories, 'check' => $check,'uncheck' => $uncheck, 'tri' => $tri,'imgs' => $imgs, 'carousel' => $carousel]);
+            return view('pages.boutique', ['products' => $products, 'name' => $name, 'price' => $price, 'categories' => $categories, 'check' => $check,'uncheck' => $uncheck, 'tri' => $tri,'imgs' => $imgs, 'carousel' => $carousel, 'active' => $active]);
         }
 
     }
@@ -64,12 +65,12 @@ class BoutiqueController extends Controller
             $products = Product::all()->where('id_categories', '=', $tri);
             $check="checked";
             $uncheck="";
-
+            $active=true;
             $categories = Category::all();
             /*$product=Product::all()->sortBy('price');*/
             $name = "";
             $price = "Selected";
-            return view('pages.boutique', ['products' => $products, 'name' => $name, 'price' => $price, 'categories' => $categories, 'check' => $check,'uncheck' => $uncheck, 'tri' => $tri,'imgs' => $imgs, 'carousel' => $carousel]);
+            return view('pages.boutique', ['products' => $products, 'name' => $name, 'price' => $price, 'categories' => $categories, 'check' => $check,'uncheck' => $uncheck, 'tri' => $tri,'imgs' => $imgs, 'carousel' => $carousel, 'active' => $active]);
 
     }
 
@@ -84,6 +85,7 @@ class BoutiqueController extends Controller
             ->LIMIT(3)
             ->get();
         $carousel=json_decode($carousel, true);
+        $active=true;
         /*Requête SQL pour le carousel ! SELECT id_products, SUM(quantity) AS q FROM `orders` GROUP BY id_products ORDER BY q DESC LIMIT 3 */
         $tri = 0;
         $product=Product::all()->sortBy('name');
@@ -92,6 +94,6 @@ class BoutiqueController extends Controller
         $uncheck="";
         $name="Selected";
         $price="";
-        return view('pages.boutique', ['products' => $product, 'name' => $name, 'price' => $price, 'categories' => $categories,'check' => $check, 'uncheck' => $uncheck, 'tri' => $tri, 'imgs' => $imgs, 'carousel' => $carousel]);
+        return view('pages.boutique', ['products' => $product, 'name' => $name, 'price' => $price, 'categories' => $categories,'check' => $check, 'uncheck' => $uncheck, 'tri' => $tri, 'imgs' => $imgs, 'carousel' => $carousel, 'active' => $active]);
     }
 }

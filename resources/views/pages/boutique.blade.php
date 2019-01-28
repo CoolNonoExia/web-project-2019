@@ -58,17 +58,14 @@
             </ol>
 
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src='{{asset('img\\products\\sweat.png')}}' alt="First slide">
-                    <div class="carousel-caption d-none d-md-block" style="color: #9b000c"></div>
-                </div>
                 @foreach($carousel as $carousels)
 
-                <div class="carousel-item">
+                <div class="carousel-item {{$active ? 'active' : ''}}" >
                     <?php $img = $imgs->find($carousels['id_products']) ?>
-                    <img class="d-block w-100" src="{{asset('img\\products\\'.$img['id'].'.'.$img['ext'])}}" alt="Second slide">
+                    <img class="d-block w-100" src="{{asset('img\\products\\'.$img['id'].'.'.$img['ext'])}}" style="width:550px; height: 450px";>
                     <div class="carousel-caption d-none d-md-block" style="color: #9b000c"></div>
                 </div>
+                    <?php $active = false; ?>
                 @endforeach
             </div>
             <a class="carousel-control-prev" href="#carousel-home" role="button" data-slide="prev">

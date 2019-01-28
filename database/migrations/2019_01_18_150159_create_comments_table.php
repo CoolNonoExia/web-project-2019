@@ -22,6 +22,7 @@ class CreateCommentsTable extends Migration
                 ->on('events')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
+            $table->string('comment');
         });
     }
 

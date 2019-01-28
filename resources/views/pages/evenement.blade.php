@@ -24,6 +24,24 @@
                 location.replace('{{route('even')}}');
             }
         }
+
+        function check(element){
+
+
+            if (element.checked){
+
+                        location.replace('{{route('eve')}}');
+            }else {
+                location.replace('{{route('eveP')}}');
+            }
+
+        }
+
+        function click(element) {
+
+
+
+        }
     </script>
 
    <div class="container-fluid">
@@ -31,7 +49,7 @@
            <div class="col-8">
                <div class="row">
                        <div class="custom-control custom-switch col">
-                           <input type="checkbox" checked="checked" class="custom-control-input" id="customSwitch1">
+                           <input type="checkbox" {{$check}} class="custom-control-input" id="customSwitch1" onchange="check(this)">
                            <label class="custom-control-label" for="customSwitch1">Evenements passés</label>
                        </div>
                        <div class="dropdown  text-right col">
@@ -86,12 +104,13 @@
                <p>Evenement passés</p>
            </div>
        </div>
+       @if($pastevents != "")
        @foreach($pastevents as $pevent)
            <div class="row">
                <div class="col-2" style="height: 150px;">
                    {{-- Images --}}
                    <?php $img = $imgs->find($pevent['id_images_events']) ?>
-                   <img src="{{asset('img\\events\\'.$img['id'].'.'.$img['ext'])}}" class="img-fluid" style="max-height: 100%; max-width: 100%;" />
+                   <a href="{{route('eveL', '')}}\{{$pevent['id']}}" onclick="click (this)"><img  src="{{asset('img\\events\\'.$img['id'].'.'.$img['ext'])}}" class="img-fluid" style="max-height: 100%; max-width: 100%;" /></a>
                </div>
                <div class="col-8">
                    <div class="row">
@@ -118,5 +137,6 @@
                </div>
            </div>
        @endforeach
+       @endif
    </div>
 @endsection
