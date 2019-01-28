@@ -57,8 +57,16 @@ class EventsController extends Controller
     public function Like($id)
     {
         $comment= Comment::all()->where('id_events', '=', $id);
-        $events = EventModel::all()->where('id_events', '=', $id);
+        $events = EventModel::all()->where('id', '=', $id);
         $imgs = Image_events::all();
         return view('pages.eventLike',['events' => $events, 'imgs' => $imgs, 'comments' => $comment]);
+    }
+
+    public function Add ()
+    {
+
+
+
+        return view('pages.eventAdd');
     }
 }

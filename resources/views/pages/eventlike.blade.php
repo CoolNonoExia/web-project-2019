@@ -35,40 +35,40 @@
             <div class="border" style="height:102px;">
                 <div>{{$event['description']}}</div>
             </div>
-            <div class="text-right">
+
+            <div>
+                <a class="btn btn-link i"> <i class="fas fa-thumbs-up"></i></a>
+            </div>
+            <span class="text-right">
                 @if($event['is_free'])
                     Free
                 @else
                     Payant
                 @endif
-            </div>
+
+            </span>
             <hr style="margin-top:25px; border-top: 1px dashed #8c8b8b;">
         </div>
         @endforeach
+
         <br>
+
         <div class="col-8">
+            <button class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un commentaire </button>
             <div class="row">
                 <div class="col">
-                    <span style="font-weight: bold;"> {{$pevent['title']}}</span>
-                </div>
-                <div class="col text-right">
-                       <span>
-                           {{$pevent['events_date']}}
-                       </span>
+                    <span style="font-weight: bold;"> Commentaires </span>
                 </div>
             </div>
+            @foreach($comments as $comment)
+                <span>{{$comment['id_user']}}</span>
             <div class="border" style="height:102px;">
-                <div>{{$pevent['description']}}</div>
-            </div>
-            <div class="text-right">
-                @if($pevent['is_free'])
-                    Free
-                @else
-                    Payant
-                @endif
+                <div>{{$comment['comment']}}</div>
             </div>
             <hr style="margin-top:25px; border-top: 1px dashed #8c8b8b;">
+            @endforeach
         </div>
+
     </div>
 
 @endsection

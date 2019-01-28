@@ -45,8 +45,14 @@
     </script>
 
    <div class="container-fluid">
+       {{--if(Admin)
+       show the button
+       else not--}}
+       <a href ="{{route('eveAdd')}}" class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un evenement ></a>
        <div class="row justify-content-center">
+
            <div class="col-8">
+
                <div class="row">
                        <div class="custom-control custom-switch col">
                            <input type="checkbox" {{$check}} class="custom-control-input" id="customSwitch1" onchange="check(this)">
@@ -99,12 +105,13 @@
            </div>
        </div>
        @endforeach
-       <div class="row justify-content-center">
+       @if($pastevents != "")
+           <div class="row justify-content-center">
            <div class="col-9" style="margin: 30px 0px; background-color: #BD0F14; color: white; font-weight: bold; padding:4px">
                <p>Evenement passés</p>
            </div>
        </div>
-       @if($pastevents != "")
+
        @foreach($pastevents as $pevent)
            <div class="row">
                <div class="col-2" style="height: 150px;">

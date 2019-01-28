@@ -35,6 +35,13 @@ class Images_eventsSeeder extends Seeder
                 'ext' => 'jpg',
                 'is_presentation' => true
             ]);
+
+            DB::table('images_events')->insert([
+                'title' => 'Tony',
+                'ext' => 'webp',
+                'is_presentation' => true
+            ]);
+
         } catch (Exception $e) {
             echo $e;
         }

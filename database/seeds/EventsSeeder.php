@@ -53,6 +53,19 @@ class EventsSeeder extends Seeder
                 'comments_number' => 21,
                 'id_images_events' => 3
             ]);
+
+            DB::table('events')->insert([
+                'title' => 'Le end game Iron Man',
+                'description' => 'Spoiler, il meurt',
+                'events_date' => new DateTime('2019-04-28'),
+                'post_date' => new DateTime(),
+                'is_recurrent' => false,
+                'is_free' => true,
+                'likes_number' => 666,
+                'comments_number' => 666,
+                'id_images_events' => 4
+            ]);
+
         } catch (Exception $e) {
             echo $e;
         }
