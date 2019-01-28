@@ -33,9 +33,15 @@
                             <img src="{{ asset('img\BDE_logo.png') }}" style="width: 200px; margin-bottom: 20px" />
                         </div>
                         <form method="POST" action="{{ route('login') }}">
+                            @if(session()->has('login_fail'))
+                                <div class="text-danger" style="margin-bottom: 10px">
+                                    {{ session('login_fail') }}
+                                </div>
+                            @endif
+
                             @csrf
                             <div class="form-group">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="{{ __('Adresse e-mail') }}" required autofocus>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') || session()->has('register_fail') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}{{ session()->has('data') ? session('data')['email'] : '' }}" placeholder="{{ __('Adresse e-mail') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">

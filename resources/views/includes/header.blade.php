@@ -66,12 +66,23 @@
             </span>
         </div>
     </div>
-    <div class="col-4">
-        <div class="row justify-content-end" style="padding-right: 10px">
-            <a href="{{ route('login') }}"><button class="btn btn-outline-warning">Se connecter</button></a>
+    @if(session('logged_in'))
+        <div class="col-4">
+            <div class="text-right text-white">
+                Bonjour, {{ session('first_name') }}
+            </div>
+            <div class="row justify-content-end" style="padding-right: 10px">
+                <a href="{{ route('logout') }}"><button class="btn btn-outline-warning">Déconnexion</button></a>
+            </div>
         </div>
-        <div class="row justify-content-end" style="padding-right: 10px">
-            <a href="{{ route('register') }}"><button class="btn btn-outline-warning">S'inscrire</button></a>
+    @else
+        <div class="col-4">
+            <div class="row justify-content-end" style="padding-right: 10px">
+                <a href="{{ route('login') }}"><button class="btn btn-outline-warning">Connexion</button></a>
+            </div>
+            <div class="row justify-content-end" style="padding-right: 10px">
+                <a href="{{ route('register') }}"><button class="btn btn-outline-warning">Inscription</button></a>
+            </div>
         </div>
-    </div>
+    @endif
 </div>

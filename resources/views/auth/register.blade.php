@@ -38,13 +38,19 @@
                             <img src="{{ asset('img\BDE_logo.png') }}" style="width: 200px; margin-bottom: 20px" />
                         </div>
                         <form method="POST" action="{{ route('register') }}">
+                            @if(session()->has('register_fail'))
+                                <div class="text-danger" style="margin-bottom: 10px">
+                                    {{ session('register_fail') }}
+                                </div>
+                            @endif
+
                             @csrf
 
                             <div class="form-group row">
                                 <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Nom') }}</label>
 
                                 <div class="col-md-8">
-                                    <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" placeholder="Johnson..." required autofocus>
+                                    <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}{{ session()->has('data') ? session('data')['last_name'] : '' }}" placeholder="Johnson..." required autofocus>
 
                                     @if ($errors->has('last_name'))
                                         <span class="invalid-feedback" role="alert">
@@ -58,7 +64,7 @@
                                 <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('Prénom') }}</label>
 
                                 <div class="col-md-8">
-                                    <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" placeholder="Cave..." required>
+                                    <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}{{ session()->has('data') ? session('data')['first_name'] : '' }}" placeholder="Cave..." required>
 
                                     @if ($errors->has('first_name'))
                                         <span class="invalid-feedback" role="alert">
@@ -72,10 +78,10 @@
                                 <label for="id_campus" class="col-md-4 col-form-label text-md-right">{{ __('Campus') }}</label>
 
                                 <div class="col-md-8">
-                                    <select id="id_campus" class="form-control{{ $errors->has('id_campus') ? ' is-invalid' : '' }}" name="id_campus" value="{{ old('id_campus') }}" required>
-                                        <option disabled selected value class="d-none">-- choisissez une option --</option>
+                                    <select id="id_campus" class="form-control{{ $errors->has('id_campus') ? ' is-invalid' : '' }}" name="id_campus" required>
+                                        <option disabled {{ session()->has('data') ? '' : 'selected' }} value class="d-none">-- choisissez une option --</option>
                                         @foreach($campuses as $campus)
-                                            <option value="{{ $campus['id'] }}">{{ $campus['name'] }}</option>
+                                            <option value="{{ $campus['id'] }}" {{ session()->has('data') ? session('data')['id_campus'] == $campus['id'] ? 'selected' : '' : '' }}>{{ $campus['name'] }}</option>
                                         @endforeach
                                     </select>
 
@@ -91,7 +97,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Adresse e-mail') }}</label>
 
                                 <div class="col-md-8">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="cave.johnson@viacesi.fr..." required>
+                                    <input id="email" type="email" class="form-control{{ $errors->has('email') || session()->has('register_fail') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}{{ session()->has('data') ? session('data')['email'] : '' }}" placeholder="cave.johnson@viacesi.fr..." required>
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
