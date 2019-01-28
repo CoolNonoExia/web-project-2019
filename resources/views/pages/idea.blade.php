@@ -16,7 +16,20 @@
     <p style="text-align: center">Si un évènement reçoie suffisament de votes le BDE l'organiseras sûrement</p>
     <hr>
 
+    <div class="row justify-content-center">
+        <div class="col-9" style="margin: 30px 0px; background-color: #BD0F14; color: white; font-weight: bold; padding:4px">
+            <p>Evenements proposés</p>
+        </div>
+    </div>
+
+    <hr>
+
     <p><b>Proposer un évènement</b></p>
-    <input class=""
+    <input type="text" name="title" value="titre" />
+    <input type="text" name="description" value="description" />
+    <input type="file" name="image" value="image" />
+
+    <button class="btn btn-outline-blue">Proposer</button>
+
 
 @endsection

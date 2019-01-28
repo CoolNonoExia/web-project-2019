@@ -14,9 +14,9 @@
 
     <hr>
     <p style="text-align: center"><b>Formulaire de commande</b></p>
-    <input type="text" name="last_name" value="Nom" /><br>
-    <input type="text" name="first_name" value="Prénom" /><br>
-    <input type="email" name="email" value="Adresse@email.fr" /><br>
+    <input type="text" name="last_name" value="Nom" />
+    <input type="text" name="first_name" value="Prénom" />
+    <input type="email" name="email" value="Adresse@email.fr" />
 
 
     <button class="btn btn-outline-blue">Commander</button>
