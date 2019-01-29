@@ -22,7 +22,7 @@
         <div class="col-2" style="height: 150px;">
             {{-- Images --}}
             <?php $img = $imgs->find($event['id_images_events']) ?>
-            <img src="{{asset('img\\events\\'.$img['id'].'.'.$img['ext'])}}" class="img-fluid" style="max-height: 100%; max-width: 100%;" />
+            <img src="{{asset('storage\\img\\events\\'.$img['id'].'.'.$img['ext'])}}" class="img-fluid" style="max-height: 100%; max-width: 100%;" />
         </div>
         <div class="col-8">
             <div class="row">
@@ -82,13 +82,14 @@
             </form>
         </div>
     </div>
+        <?php $i=0; ?>
         @foreach($comments as $comment)
-            <span>{{$comment['id_user']}}</span>
-
-        <div class="border" style="height:102px;">
-            <div>{{$comment['comment']}}</div>
-        </div>
-        <hr style="margin-top:25px; border-top: 1px dashed #8c8b8b;">
+            <span>{{$users[$i]['first_name']}} {{$users[$i]['last_name']}}</span>
+            <div class="border" style="height:102px;">
+                <div>{{$comment['comment']}}</div>
+            </div>
+            <hr style="margin-top:25px; border-top: 1px dashed #8c8b8b;">
+            <?php $i++; ?>
         @endforeach
 
     <script>

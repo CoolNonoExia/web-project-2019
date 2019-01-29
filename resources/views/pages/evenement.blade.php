@@ -76,6 +76,7 @@
                <p>Evenement à venir</p>
            </div>
        </div>
+
        @foreach($events as $event)
        <div class="row">
            <div class="col-2" style="height: 150px;">
@@ -104,13 +105,13 @@
                        Payant
                    @endif
                </div>
-               @if($registration =="")
-               <form method="POST" action="{{ route('Regist','')}}\{{$event['id']}}" enctype="multipart/form-data">
-                   @csrf
-                    <button class="btn btn-blue" id="show"> Je m'inscris ! </button>
-               </form>
-                   @else
+               @if($event['registered'])
                    <button class="btn btn-success disabled"><i class="fas fa-check"></i> Incris </button>
+               @else
+                   <form method="POST" action="{{ route('Regist','')}}\{{$event['id']}}">
+                       @csrf
+                       <button class="btn btn-blue" id="show"> Je m'inscris ! </button>
+                   </form>
                @endif
                <hr style="margin-top:25px; border-top: 1px dashed #8c8b8b;">
            </div>

@@ -32,7 +32,22 @@ class EventsController extends Controller
         $events = EventModel::all()->where('events_date', '>', date('Y-m-d h:i:s', time()))->sortBy('events_date');
         $pastevents = EventModel::all()->where('events_date', '<', date('Y-m-d h:i:s', time()))->sortBy('events_date');;
         $imgs = Image_events::all();
+
         $regist = Registration::all()->where('id_user', '=', session('id'));
+
+        foreach($events as $event)
+        {
+            $registered = false;
+            foreach($regist as $reg)
+            {
+                if($reg['id_events'] == $event['id'])
+                {
+                    $registered = true;
+                }
+            }
+            $event['registered'] = $registered;
+        }
+
         $date="Seclected";
         $check="checked=\"checked\"";
         $name="";
