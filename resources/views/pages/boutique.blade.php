@@ -117,39 +117,39 @@
         <a href ="{{route('productAdd')}}" class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un produit</a>
     @endif
 
-    @if($carousel != "")
-    <p style="text-align: center; color: #101010; font-size: larger"><b> ILS NE SERONT BIENTOT PLUS EN STOCK ! </b></p>
-    <hr>
-    <div class="row">
-        <div id="carousel-home" class="carousel slide col-4 offset-4" data-ride="carousel";>
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-home" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-home" data-slide-to="1"></li>
-                <li data-target="#carousel-home" data-slide-to="2"></li>
+    @if($carousels != "")
+        <p style="text-align: center; color: #101010; font-size: larger"><b> ILS NE SERONT BIENTOT PLUS EN STOCK ! </b></p>
+        <hr>
+        <div class="row">
+            <div id="carousel-home" class="carousel slide col-4 offset-4" data-ride="carousel";>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-home" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-home" data-slide-to="1"></li>
+                    <li data-target="#carousel-home" data-slide-to="2"></li>
+                </ol>
 
-            </ol>
+                <div class="carousel-inner">
+                    @foreach($carousels as $carousel)
+                        <div class="carousel-item {{$active ? 'active' : ''}}" >
+                            <?php $img = $imgs->find($carousel['id_images_products']) ?>
+                            <img class="d-block w-100" src="{{asset('storage\\img\\products\\'.$img['id'].'.'.$img['ext'])}}" style="height: 200px";>
+                            <div class="carousel-caption d-none d-md-block" style="color: #9b000c"></div>
+                        </div>
+                        <?php $active = false; ?>
+                    @endforeach
+                </div>
 
-            <div class="carousel-inner">
-                @foreach($carousel as $carousels)
-                    <div class="carousel-item {{$active ? 'active' : ''}}" >
-                        <?php $img = $imgs->find($carousels['id_products']) ?>
-                        <img class="d-block w-100" src="{{asset('img\\products\\'.$img['id'].'.'.$img['ext'])}}" style="width:550px; height: 450px";>
-                        <div class="carousel-caption d-none d-md-block" style="color: #9b000c"></div>
-                    </div>
-                    <?php $active = false; ?>
-                @endforeach
+                <a class="carousel-control-prev" href="#carousel-home" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+
+                <a class="carousel-control-next" href="#carousel-home" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-            <a class="carousel-control-prev" href="#carousel-home" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel-home" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-
         </div>
-    </div>
     @endif
     <hr size="8" align="center" width="100%">
     <span style="text-align: left">Notre boutique propose une collection d'article qui dépassent l'entendement !</span>
