@@ -38,19 +38,24 @@
             <div class="border" style="height:102px;">
                 <div>{{$event['description']}}</div>
             </div>
-
+            <br>
             <div>
-                <form method="POST" action="{{ route('voteAdd', '') }}\{{ Request::segment(2) }}" enctype="multipart/form-data">
-                    @csrf
-                <div>
-                    <button class="btn btn-link"> <i class="fas fa-thumbs-up"></i></button>
-                    <span>{{$event['likes_number']}}</span>
-                </div>
-                </form>
+                    @if($event['vote'])
+                        <div>
+                            <button disabled class="btn btn-primary" > <i class="fas fa-thumbs-up"></i></button>
+                            <span>{{$event['likes_number']}}</span>
+                        </div>
+                    @else
+                        <form method="POST" action="{{ route('voteAdd', '') }}\{{ Request::segment(2) }}" enctype="multipart/form-data">
+                            @csrf
+                            <button class="btn btn-link"> <i class="fas fa-thumbs-up"></i></button>
+                            <span>{{$event['likes_number']}}</span>
+                        </form>
+                    @endif
 
             </div>
 
-            <span class="text-right">
+            <span class="row">
                 @if($event['is_free'])
                     Gratuit
                 @else
@@ -92,7 +97,7 @@
     </div>
         <?php $i=0; ?>
         @foreach($comments as $comment)
-            <span>{{$users[$i]['first_name']}} {{$users[$i]['last_name']}}</span>
+            <span style="font-weight: bold">{{$users[$i]['first_name']}} {{$users[$i]['last_name']}}</span>
             <div class="border" style="height:102px;">
                 <div>{{$comment['comment']}}</div>
             </div>

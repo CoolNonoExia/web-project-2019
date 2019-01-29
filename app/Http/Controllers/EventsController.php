@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\EventModel;
 use App\Comment;
 use App\Registration;
+use App\Like;
 use Illuminate\Support\Facades\DB;
 use function Sodium\increment;
 
@@ -83,8 +84,10 @@ class EventsController extends Controller
     {
         $client = new \GuzzleHttp\Client();
 
+        $events = EventModel::all()->where('id', '=', $id);
+        $imgs = Image_events::all();
         $comments = Comment::all()->where('id_events', '=', $id);
-
+        $likes = Like::all()->where('id_user','=', session('id'));
         $users = array();
         $i = 0;
         foreach($comments as $comment)
@@ -94,10 +97,22 @@ class EventsController extends Controller
             $i++;
         }
 
-        $events = EventModel::all()->where('id', '=', $id);
-        $imgs = Image_events::all();
 
-        return view('pages.eventLike',['events' => $events, 'imgs' => $imgs, 'comments' => $comments, 'users' => $users]);
+
+        foreach($events as $event)
+        {
+            $vote = false;
+            foreach($likes as $like)
+            {
+                if($like['id_events'] == $event['id'])
+                {
+                    $vote = true;
+                }
+            }
+            $event['vote'] = $vote;
+        }
+
+        return view('pages.eventLike',['events' => $events, 'imgs' => $imgs, 'comments' => $comments, 'users' => $users, 'likes' => $likes]);
     }
 
     public function getAdd()
@@ -143,8 +158,6 @@ class EventsController extends Controller
     {
         $comments = new Comment;
 
-
-
         $comments->id_user = session('id');
         $comments->id_events = $id ;
         $comments->comment = $request->desc;
@@ -159,11 +172,8 @@ class EventsController extends Controller
     {
         $regist = new Registration;
 
-
-
         $regist->id_user = session('id');
         $regist->id_events = $id ;
-
 
         $regist->save();
 
@@ -176,9 +186,14 @@ class EventsController extends Controller
         unset($like->connection);
         $like->likes_number = $like->likes_number + 1;
 
-
-
         $like->save();
+
+
+        $vote = new Like;
+
+        $vote->id_user = session('id');
+        $vote->id_events = $id;
+        $vote->save();
 
         return redirect()->route('eveL', $id);
     }

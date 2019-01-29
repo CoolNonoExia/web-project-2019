@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DislikeAddRequest;
+use App\Http\Requests\LikeAddRequest;
 use DateTime;
 use Illuminate\Http\Request;
 use App\Http\Requests\IdeaAddRequest;
@@ -14,11 +16,31 @@ class IdeaController extends Controller
 {
     public function index()
     {
-        $ideas=Suggestion_box::all();
+        $ideas = Suggestion_box::all();
+        $likes = Vote::all()->where('id_user','=',session('id'));
+
+
+        foreach($ideas as $idea)
+        {
+            $vote = false;
+            $dislike = false;
+            foreach($likes as $like)
+            {
+                if($like['id_suggestion_box'] == $idea['id'] && $like['vote']==1)
+                {
+                    $vote = true;
+                }if($like['id_suggestion_box'] == $idea['id'] && $like['vote']==0){
+
+                    $dislike = true;
+                }
+            }
+            $idea['like'] = $vote;
+            $idea['dislike'] = $dislike;
+        }
 
         if(AuthController::isConnected())
         {
-            return view('pages.idea', ['ideas' => $ideas]);
+            return view('pages.idea', ['ideas' => $ideas, 'likes' => $likes]);
         }
         return redirect()->route('home');
     }
@@ -64,6 +86,44 @@ class IdeaController extends Controller
         $idea->id_user = session('id');
 
         $idea->save();
+
+        return redirect()->route('idea');
+    }
+
+    public function postLike(LikeAddRequest $request, $id)
+    {
+        $like = Suggestion_box::all()->where('id','=',$id)->first();
+        unset($like->connection);
+        $like->votes_number = $like->votes_number + 1;
+
+        $like->save();
+
+
+        $vote = new Vote;
+
+        $vote->id_user = session('id');
+        $vote->id_suggestion_box = $id;
+        $vote->vote =1;
+        $vote->save();
+
+        return redirect()->route('idea');
+    }
+
+    public function postDislike(DislikeAddRequest $request, $id)
+    {
+        $like = Suggestion_box::all()->where('id','=',$id)->first();
+        unset($like->connection);
+        $like->unvotes_number = $like->unvotes_number + 1;
+
+        $like->save();
+
+
+        $vote = new Vote;
+
+        $vote->id_user = session('id');
+        $vote->id_suggestion_box = $id;
+        $vote->vote =0;
+        $vote->save();
 
         return redirect()->route('idea');
     }

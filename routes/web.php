@@ -45,6 +45,8 @@ Route::get('panier', 'PanierController@index')->name('panier');
 Route::get('idea', 'IdeaController@index')->name('idea');
 Route::get('ideaAdd','IdeaController@getAdd')->name('ideaAdd');
 Route::post('ideaAdd', 'IdeaController@postAdd')->name('ideaAdd');
+Route::post('ideaL/{id}', 'IdeaController@postLike')->name('likeAdd');
+Route::post('idealD/{id}', 'IdeaController@postDislike')->name('dislikeAdd');
 
 //TODO: delete later
 Route::get('testing', 'AccueilController@testget');

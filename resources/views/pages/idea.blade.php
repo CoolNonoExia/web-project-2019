@@ -102,10 +102,38 @@
                 <span style="font-weight: bold">{{$idea['title']}}</span>
                 <p>{{$idea['description']}}</p>
             </div>
-            <span><a class="btn btn-link i" target="_blank"><i class="fas fa-thumbs-up"></i></a> </span>
-            <span class="align-middle">{{$idea['votes_number']}}</span>
-            <span><a class="btn btn-link i" target="_blank"><i class="fas fa-thumbs-down"></i></a></span>
-            <span>{{$idea['unvotes_number']}}</span>
+
+            @if($idea['like'])
+                <span><button class="btn btn-primary"> <i class="fas fa-thumbs-up"></i></button> </span>
+                <span style="padding: 10px;">{{$idea['votes_number']}}</span>
+                <button class="btn btn-outline-danger" disabled> <i class="fas fa-thumbs-down"></i></button>
+                <span style="padding: 10px;">{{$idea['unvotes_number']}}</span>
+            @elseif ($idea['like']== false && $idea['dislike'] ==false)
+                <form method="POST" action="{{ route('likeAdd', '') }}\{{$idea['id']}}" enctype="multipart/form-data">
+                    @csrf
+                    <span><button class="btn btn-outline-primary"> <i class="fas fa-thumbs-up"></i></button> </span>
+                    <span style="padding: 10px;">{{$idea['votes_number']}}</span>
+                </form>
+                <form method="POST" action="{{ route('dislikeAdd', '') }}\{{$idea['id']}}" enctype="multipart/form-data">
+                    @csrf
+                    <button class="btn btn-outline-danger"> <i class="fas fa-thumbs-down"></i></button>
+                    <span style="padding: 10px;">{{$idea['unvotes_number']}}</span>
+                </form>
+
+
+
+            @elseif($idea['dislike'])
+                <span><button class="btn btn-outline-primary" disabled> <i class="fas fa-thumbs-up"></i></button> </span>
+                <span style="padding: 10px;">{{$idea['votes_number']}}</span>
+                <button class="btn btn-danger"> <i class="fas fa-thumbs-down"></i></button>
+                <span style="padding: 10px;">{{$idea['unvotes_number']}}</span>
+
+            @endif
+
+
+
+
+
         </div>
         @endforeach
 
