@@ -48,7 +48,7 @@
                     @else
                         <form method="POST" action="{{ route('voteAdd', '') }}\{{ Request::segment(2) }}" enctype="multipart/form-data">
                             @csrf
-                            <button class="btn btn-link"> <i class="fas fa-thumbs-up"></i></button>
+                            <button class="btn btn-outline-primary"> <i class="fas fa-thumbs-up"></i></button>
                             <span>{{$event['likes_number']}}</span>
                         </form>
                     @endif
@@ -113,14 +113,14 @@
             $(this).next('.custom-file-label').html(fileName);
         });
 
-        $("Com").hide();
+        $("#Com").hide();
 
         $(document).ready(function(){
             $("#hide").click(function(){
-                $("2").hide(1000);
+                $("#Com").hide(1000);
             });
             $("#show").click(function(){
-                $("2").show(1000);
+                $("#Com").show(1000);
             });
         });
      </script>

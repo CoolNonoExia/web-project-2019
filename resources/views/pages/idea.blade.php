@@ -88,8 +88,6 @@
     </div>
 
 
-
-
     @foreach($ideas as $idea)
         <br>
         <div class="row">
@@ -99,7 +97,7 @@
         </div>
         <div class="row align-items-center">
             <div class="border" style="height:50px; width: 350px;">
-                <span style="font-weight: bold">{{$idea['title']}}</span>
+                <span style="font-weight: bold;"><u> {{$idea['title']}}</u></span>
                 <p>{{$idea['description']}}</p>
             </div>
 
@@ -121,26 +119,20 @@
                 </form>
 
 
-
             @elseif($idea['dislike'])
                 <span><button class="btn btn-outline-primary" disabled> <i class="fas fa-thumbs-up"></i></button> </span>
                 <span style="padding: 10px;">{{$idea['votes_number']}}</span>
                 <button class="btn btn-danger"> <i class="fas fa-thumbs-down"></i></button>
                 <span style="padding: 10px;">{{$idea['unvotes_number']}}</span>
-
             @endif
 
 
-
-
-
         </div>
+
+        <?php $i=0; ?>
+        {{--<p style="font-weight: bold">{{$users[$i]['first_name']}} {{$users[$i]['last_name']}}</p>--}}
+        <?php $i++; ?>
+
         @endforeach
-
-
-
-
-
-
 
 @endsection

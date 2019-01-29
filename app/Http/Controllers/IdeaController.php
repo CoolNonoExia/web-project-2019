@@ -16,8 +16,18 @@ class IdeaController extends Controller
 {
     public function index()
     {
+        $client = new \GuzzleHttp\Client();
         $ideas = Suggestion_box::all();
         $likes = Vote::all()->where('id_user','=',session('id'));
+        $users = array();
+        $i = 0;
+
+        foreach($ideas as $idea)
+        {
+            $getreq = $client->get('http://localhost:3000/users/' . 2); //$comment['id_user']
+            array_push($users, json_decode($getreq->getBody()->getContents(), true)[0]);
+            $i++;
+        }
 
 
         foreach($ideas as $idea)
@@ -40,7 +50,7 @@ class IdeaController extends Controller
 
         if(AuthController::isConnected())
         {
-            return view('pages.idea', ['ideas' => $ideas, 'likes' => $likes]);
+            return view('pages.idea', ['ideas' => $ideas, 'likes' => $likes,'users' => $users]);
         }
         return redirect()->route('home');
     }
