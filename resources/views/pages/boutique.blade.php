@@ -54,15 +54,70 @@
                 {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
+            }).done(function(){
+                $('#snackbar').addClass('show');
+                setTimeout(function(){
+                    $('#snackbar').removeClass('show');
+                }, 2000);
             });
         }
 
     </script>
+
+    <style>
+        #snackbar {
+            visibility: hidden; /* Hidden by default. Visible on click */
+            min-width: 250px; /* Set a default minimum width */
+            margin-left: -125px; /* Divide value of min-width by 2 */
+            background-color: #333; /* Black background color */
+            color: #fff; /* White text color */
+            text-align: center; /* Centered text */
+            border-radius: 2px; /* Rounded borders */
+            padding: 16px; /* Padding */
+            position: fixed; /* Sit on top of the screen */
+            z-index: 1; /* Add a z-index if needed */
+            left: 50%; /* Center the snackbar */
+            bottom: 30px; /* 30px from the bottom */
+        }
+
+        /* Show the snackbar when clicking on a button (class added with JavaScript) */
+        #snackbar.show {
+            visibility: visible; /* Show the snackbar */
+            /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+            However, delay the fade out process for 1.5 seconds */
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 1.5s;
+            animation: fadein 0.5s, fadeout 0.5s 1.5s;
+        }
+
+        /* Animations to fade the snackbar in and out */
+        @-webkit-keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @-webkit-keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+    </style>
+
+    <div id="snackbar" class="bg-success">Article ajouté au panier</div>
+
     @if(session()->has('logged_in') && session('logged_in') && session('role') == 2)
         <a href ="{{route('productAdd')}}" class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un produit</a>
     @endif
-    @if($carousel != "")
 
+    @if($carousel != "")
     <p style="text-align: center; color: #101010; font-size: larger"><b> ILS NE SERONT BIENTOT PLUS EN STOCK ! </b></p>
     <hr>
     <div class="row">
@@ -133,7 +188,11 @@
                 <p>{{$product['description']}}</p>
                 <p> Get this product for only {{$product['price']}}€ </p>
                 @if(session()->has('logged_in') && session('logged_in'))
-                    <button class="btn btn-blue" onclick="onClick({{$product['id']}})"> Ajouter au panier </button>
+                    @if($product['in_stock'])
+                        <button class="btn btn-blue" onclick="onClick({{$product['id']}})"> Ajouter au panier <i class="fas fa-cart-plus"></i></button>
+                    @else
+                        <button class="btn btn-danger disabled">Rupture de stock</button>
+                    @endif
                 @endif
             </div>
             @endforeach
