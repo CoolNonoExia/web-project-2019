@@ -26,7 +26,6 @@ class IdeaAddRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'desc' => ['required', 'string'],
-            'date' => ['required', 'string', 'date'],
             'image' => ['image'],
         ];
     }

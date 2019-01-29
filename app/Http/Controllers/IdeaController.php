@@ -25,16 +25,13 @@ class IdeaController extends Controller
 
     public function getAdd()
     {
-        $ideas=Suggestion_box::all();
-
         if(AuthController::isConnected())
         {
+            $ideas = Suggestion_box::all();
             return view('pages.idea', ['ideas' => $ideas]);
         }
         return redirect()->route('home');
-
     }
-
 
     public function postAdd(IdeaAddRequest $request)
     {

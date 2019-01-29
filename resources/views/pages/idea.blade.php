@@ -33,7 +33,7 @@
         </div>
         <div class="form-group">
             <label for="desc">Description</label>
-            <input class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" id="desc" name="desc" value="{{ old('desc') }}" placeholder="Prix, lieu...">
+            <input class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" id="desc" name="desc" value="{{ old('desc') }}" placeholder="Propositions, lieu...">
             @if ($errors->has('desc'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('desc') }}</strong>

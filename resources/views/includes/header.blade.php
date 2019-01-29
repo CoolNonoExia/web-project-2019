@@ -3,7 +3,7 @@
     {
         box-shadow: 0px 0px 15px #101010;
         background-color: #111;
-        background-image: linear-gradient(180deg, #679, #111);
+        background-image: linear-gradient(180deg, #506080, #111);
         border: 0px;
     }
     header {
@@ -74,10 +74,10 @@
             </div>
         </div>
         <div class="col-md-2 col-lg-1">
-            <div class="text-right text-white">
+            <div class="text-right text-white" style="margin-right: 5px">
                 {{ session('first_name') }}
             </div>
-            <div class="dropdown">
+            <div class="dropdown text-right">
                 <button class="btn btn-outline-warning dropdown-toggle" type="button" id="ddlOptions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Options
                 </button>

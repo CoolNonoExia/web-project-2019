@@ -11,7 +11,7 @@
     footer {
         box-shadow: 0px 0px 15px #101010;
         background-color: #111;
-        background-image: linear-gradient(180deg, #679, #111);
+        background-image: linear-gradient(180deg, #506080/*#679*/, #111);
         border: 0px;
         padding: 20px;
     }
