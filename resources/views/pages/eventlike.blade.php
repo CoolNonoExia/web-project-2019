@@ -63,12 +63,14 @@
                     <span style="font-weight: bold;"> Commentaires </span>
                 </div>
             </div>
+            <?php $i = 0; ?>
             @foreach($comments as $comment)
-                <span>{{$comment['id_user']}}</span>
-            <div class="border" style="height:102px;">
-                <div>{{$comment['comment']}}</div>
-            </div>
-            <hr style="margin-top:25px; border-top: 1px dashed #8c8b8b;">
+                <span>{{ $users[$i]['first_name'] }} {{ $users[$i]['last_name'] }}</span>
+                <div class="border" style="height:102px;">
+                    <div>{{ $comment['comment'] }}</div>
+                </div>
+                <hr style="margin-top:25px; border-top: 1px dashed #8c8b8b;">
+                <?php $i++; ?>
             @endforeach
         </div>
 

@@ -119,7 +119,7 @@ class AuthController extends Controller
             return redirect()->route('login')->with('login_fail', 'Aucun compte n\'a été trouvé avec cette adresse e-mail')->with('data', $data);
         }
 
-        $user_data = $client->get('http://localhost:3000/users/' . $data['email']);
+        $user_data = $client->get('http://localhost:3000/users/email/' . $data['email']);
         $user_data = json_decode($user_data->getBody()->getContents(), true)[0];
 
         if (password_verify($data['password'], $user_data['password']))

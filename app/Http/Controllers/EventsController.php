@@ -58,10 +58,23 @@ class EventsController extends Controller
 
     public function Like($id)
     {
-        $comment= Comment::all()->where('id_events', '=', $id);
+        $client = new \GuzzleHttp\Client();
+
+        $comments = Comment::all()->where('id_events', '=', $id);
+
+        $users = array();
+        $i = 0;
+        foreach($comments as $comment)
+        {
+            $getreq = $client->get('http://localhost:3000/users/' . 2); //$comment['id_user']
+            array_push($users, json_decode($getreq->getBody()->getContents(), true)[0]);
+            $i++;
+        }
+
         $events = EventModel::all()->where('id', '=', $id);
         $imgs = Image_events::all();
-        return view('pages.eventLike',['events' => $events, 'imgs' => $imgs, 'comments' => $comment]);
+
+        return view('pages.eventLike',['events' => $events, 'imgs' => $imgs, 'comments' => $comments, 'users' => $users]);
     }
 
     public function getAdd()
