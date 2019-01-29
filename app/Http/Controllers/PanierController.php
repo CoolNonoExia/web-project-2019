@@ -50,7 +50,6 @@ class PanierController extends Controller
         unset($panier[$c]);
 
         setcookie('panier', serialize($panier), time()+60*60*24*7, '/');
-
         return json_encode('success');
     }
 
@@ -81,7 +80,6 @@ class PanierController extends Controller
         }
 
         setcookie('panier', serialize($panier), time()+60*60*24*7, '/');
-
         return json_encode('success');
     }
 }
