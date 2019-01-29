@@ -32,7 +32,6 @@ Route::get('boutiqueAdd', 'BoutiqueController@getProduct')->name('productAdd');
 Route::post('boutiqueAdd', 'BoutiqueController@addProduct')->name('productAdd');
 Route::post('/boutique/s', 'BoutiqueController@addPanier')->name('boutiqueAddPanier');
 
-
 Route::get('event', 'EventsController@index')->name('eve');
 Route::get('eventN', 'EventsController@indexN')->name('even');
 Route::get('eventP', 'EventsController@Past')->name('eveP');
@@ -52,6 +51,3 @@ Route::get('ideaAdd','IdeaController@getAdd')->name('ideaAdd');
 Route::post('ideaAdd', 'IdeaController@postAdd')->name('ideaAdd');
 Route::post('ideaL/{id}', 'IdeaController@postLike')->name('likeAdd');
 Route::post('idealD/{id}', 'IdeaController@postDislike')->name('dislikeAdd');
-
-//TODO: delete later
-Route::get('testing', 'AccueilController@testget');
