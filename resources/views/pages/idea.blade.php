@@ -9,7 +9,7 @@
     <a href="{{ route('idea') }}"><button class="btn btn-blue"><i class="far fa-lightbulb"></i> Boîte à idées</button></a>
 @endsection
 @section('content')
-    <p style="text-align: center"><b>Boîte à Idées</b></p>
+    <p style="text-align: center"><b>Boîte à idées</b></p>
     <hr>
 
     <p style="text-align: center">Vous retrouverez ici l'ensemble des événements proposés par les étudiants du Campus CESI de Nice</p>
@@ -17,8 +17,56 @@
     <p style="text-align: center">Si un événement reçoit suffisament de votes, le BDE l'organisera sûrement</p>
     <hr>
     <div class="text-center">
-        <button class="btn btn-secondary">Ajoutez vos idées !</button>
+        <button class="btn btn-success font-italic">Ajoutez vos idées !</button>
     </div>
+
+    <form method="POST" action="{{ route('ideaAdd') }}" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label for="title">Titre</label>
+            <input class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" id="title" name="title" value="{{ old('title') }}" placeholder="BBQ, concert...">
+            @if ($errors->has('title'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('title') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <input class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" id="desc" name="desc" value="{{ old('desc') }}" placeholder="Prix, lieu...">
+            @if ($errors->has('desc'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('desc') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="imgUpload">Upload</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input {{ $errors->has('image') ? ' is-invalid' : '' }}" id="image" name="image" value="{{ old('image') }}" aria-describedby="imgUpload" accept="image/jpeg, image/png, image/bmp, image/gif, image/svg">
+                <label class="custom-file-label" for="image">Choisir image</label>
+
+                @if ($errors->has('image'))
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('image') }}</strong>
+                </span>
+                @endif
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success text-white"  >Submit</button>
+    </form>
+
+    <script>
+        $('#image').on('change', function(){
+            //get the file name
+            let fileName = $(this).val().split('\\').pop();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
+
 
 
     <div class="row justify-content-center">
@@ -27,6 +75,9 @@
         </div>
     </div>
 
+
+
+
     @foreach($ideas as $idea)
         <br>
         <div class="row">
@@ -34,44 +85,21 @@
                 <span>Idée numéro {{$idea['id']}} :</span>
             </div>
         </div>
-        <div class="row">
+        <div class="row align-items-center">
             <div class="border" style="height:50px; width: 350px;">
                 <span style="font-weight: bold">{{$idea['title']}}</span>
                 <p>{{$idea['description']}}</p>
             </div>
             <span><a class="btn btn-link i" target="_blank"><i class="fas fa-thumbs-up"></i></a> </span>
+            <span class="align-middle">{{$idea['votes_number']}}</span>
             <span><a class="btn btn-link i" target="_blank"><i class="fas fa-thumbs-down"></i></a></span>
-
+            <span>{{$idea['unvotes_number']}}</span>
         </div>
         @endforeach
 
 
 
 
-{{--    <hr>
-
-    <p style="text-align: center"><b>Proposer une activité</b></p>
-    <form method="post" action="idea.blade.php" enctype="multipart/form-data">
-        <label for="title"><b>Titre de l'évènement</b></label>
-    <input type="text" name="title" value="titre" /><br>
-        <label for="description"><b>Description de l'évènement</b></label>
-    <input type="text" name="description" value="description" /><br>
-    <input type="hidden" name="max_size" value="1048576" />
-        <label type="image"><b>Illustration évènement</b></label>
-    <input type="file" name="image" value="image" /><br>
-    <input style="float: right;"class="btn btn-outline-blue" type="submit" name="submit" value="Proposer" />
-    </form>--}}
-
-    <!--?php
-        $_FILES['']
-        if ($_FILES[''][''] > 0) $erreur = "Erreur lors du transfert";
-        if ($_FILES[''][''] > $maxsize) $erreur = "Le fichier est trop gros";
-        $extension_valides = array('jpg','jpeg','gif','png');
-        $extension_upload = strtolower( substr( strrchr($_FILES[''][''], '.') ,1));
-        if (in_array($extension_upload,$extension_valides)) echo = "Extension correcte";
-        $image_sizes = getimagesize($_FILES['']['']);
-
-    ?-->
 
 
 
