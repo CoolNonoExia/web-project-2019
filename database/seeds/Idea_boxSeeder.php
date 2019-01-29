@@ -19,10 +19,11 @@ class Idea_boxSeeder extends Seeder
         try{
             // Seed our events table
             DB::table('suggestion_box')->insert([
-                'title' => 'KArting',
+                'title' => 'Karting',
                 'description' => 'Venez on se fait une aprem course !!!',
                 'post_date' => new DateTime(),
                 'votes_number' => 23,
+                'unvotes_number' => 4,
                 'id_images_events' => 9,
                 'id_user' => 7,
             ]);
@@ -32,6 +33,7 @@ class Idea_boxSeeder extends Seeder
                 'description' => 'Un weekend au Sky ! Génial non ?!',
                 'post_date' => new DateTime(),
                 'votes_number' => 999,
+                'unvotes_number' => 156,
                 'id_images_events' => 10,
                 'id_user' =>5,
             ]);
@@ -41,6 +43,7 @@ class Idea_boxSeeder extends Seeder
                 'description' => 'Ce soir va être une pure soirée ! ',
                 'post_date' => new DateTime(),
                 'votes_number' => 5,
+                'unvotes_number' => 8,
                 'id_images_events' => 14,
                 'id_user' => 2,
             ]);

@@ -46,7 +46,7 @@
 
         }
 
-        function test(id) {
+        function onClick(id) {
             $.ajax({
                 url:'{{ url('/boutique/s') }}',
                 type: "post",
@@ -75,12 +75,11 @@
 
             <div class="carousel-inner">
                 @foreach($carousel as $carousels)
-
-                <div class="carousel-item {{$active ? 'active' : ''}}" >
-                    <?php $img = $imgs->find($carousels['id_products']) ?>
-                    <img class="d-block w-100" src="{{asset('img\\products\\'.$img['id'].'.'.$img['ext'])}}" style="width:550px; height: 450px";>
-                    <div class="carousel-caption d-none d-md-block" style="color: #9b000c"></div>
-                </div>
+                    <div class="carousel-item {{$active ? 'active' : ''}}" >
+                        <?php $img = $imgs->find($carousels['id_products']) ?>
+                        <img class="d-block w-100" src="{{asset('img\\products\\'.$img['id'].'.'.$img['ext'])}}" style="width:550px; height: 450px";>
+                        <div class="carousel-caption d-none d-md-block" style="color: #9b000c"></div>
+                    </div>
                     <?php $active = false; ?>
                 @endforeach
             </div>
@@ -133,7 +132,7 @@
                 <p>{{$product['description']}}</p>
                 <p> Get this product for only {{$product['price']}}€ </p>
                 @if(session()->has('logged_in') && session('logged_in'))
-                    <button class="btn btn-blue" onclick="test({{$product['id']}})"> Ajouter au panier </button>
+                    <button class="btn btn-blue" onclick="onClick({{$product['id']}})"> Ajouter au panier </button>
                 @endif
             </div>
             @endforeach

@@ -11,26 +11,22 @@ class IdeaController extends Controller
 {
     public function index()
     {
-        $ideas=Suggestion_box::all();
-        $like= DB::table('votes')
+        $ideas = Suggestion_box::all();
 
+        /*$like = DB::table('votes')
             ->count('vote')
-            ->where('vote', '=', 'true')
+            ->where('vote', '=', true)
             ->get();
-        $dislike=DB::table('votes')
 
+        $dislike = DB::table('votes')
             ->count('vote')
-            ->where('vote', '=', 'true')
-            ->get();
+            ->where('vote', '=', false)
+            ->get();*/
 
         if(AuthController::isConnected())
         {
             return view('pages.idea', ['ideas' => $ideas]);
         }
         return redirect()->route('home');
-
-
-
-
     }
 }
