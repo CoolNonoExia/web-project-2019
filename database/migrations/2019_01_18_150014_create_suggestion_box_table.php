@@ -19,6 +19,7 @@ class CreateSuggestionBoxTable extends Migration
             $table->string('description');
             $table->dateTime('post_date');
             $table->bigInteger('votes_number')->unsigned();
+            $table->bigInteger('unvotes_number')->unsigned();
             $table->bigInteger('id_images_events')->unsigned();
             $table->foreign('id_images_events')
                 ->references('id')
