@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductAddRequest;
 use App\User;
 use Illuminate\Http\Request;
 use App\Product;
@@ -119,5 +120,42 @@ class BoutiqueController extends Controller
 
         setcookie('panier', json_decode($_POST['id_pro'], true), time()+60*60*24*7, '/');
 //        session()->put('panier', $panier);
+    }
+
+    public function getProduct()
+    {
+        if(!AuthController::isConnected() || session('role') !== 2)
+        {
+            return redirect()->route('home');
+        }
+
+        return view('pages.boutiqueAdd');
+    }
+
+    public function addProduct(ProductAddRequest $request)
+    {
+        $product = new Product;
+        $img = new Image_products;
+
+        $extension = explode('.', $request->image->getClientOriginalName());
+
+        $img->title = $request->name;
+        $img->ext = end($extension);
+
+
+        $img->save();
+
+        $request->image->storeAs('public/img/products', $img->id . '.' . $img->ext);
+
+        $product->name = $request->name;
+        $product->description = $request->desc;
+        $product->price = $request->price;
+        $product->in_stock = 1;
+        $product->id_categories = $request->cat;
+        $product->id_images_products = $img->id;
+
+        $product->save();
+
+        return redirect()->route('boutique');
     }
 }

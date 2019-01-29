@@ -58,8 +58,11 @@
         }
 
     </script>
-
+    @if(session()->has('logged_in') && session('logged_in') && session('role') == 2)
+        <a href ="{{route('productAdd')}}" class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un produit</a>
+    @endif
     @if($carousel != "")
+
     <p style="text-align: center; color: #101010; font-size: larger"><b> ILS NE SERONT BIENTOT PLUS EN STOCK ! </b></p>
     <hr>
     <div class="row">

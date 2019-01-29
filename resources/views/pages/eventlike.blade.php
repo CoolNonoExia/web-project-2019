@@ -79,7 +79,7 @@
             <button class="btn btn-blue" id="show"> <i class="fas fa-plus"></i> Ajouter un commentaire </button>
         </div>
         <div class="col-12">
-            <form method="POST" id="2" action="{{ route('ComAdd', '') }}\{{ Request::segment(2) }}" enctype="multipart/form-data">
+            <form method="POST" id="Com" action="{{ route('ComAdd', '') }}\{{ Request::segment(2) }}" enctype="multipart/form-data">
                 @csrf
                 <label class="d-block" for="desc">Commentaire</label>
                 <div class="form-group input-group">
@@ -113,14 +113,14 @@
             $(this).next('.custom-file-label').html(fileName);
         });
 
-        $("id=2").hide();
+        $("Com").hide();
 
         $(document).ready(function(){
             $("#hide").click(function(){
-                $("id=2").hide(1000);
+                $("2").hide(1000);
             });
             $("#show").click(function(){
-                $("id=2").show(1000);
+                $("2").show(1000);
             });
         });
      </script>
