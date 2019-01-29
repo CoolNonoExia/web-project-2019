@@ -31,7 +31,6 @@
 
         function onradiobtn(element) {
 
-
             let id = element.id;
 
 
@@ -43,7 +42,6 @@
                 location.replace('{{ route('boutique') }}/T'+id);
 
             }
-
         }
 
         function onClick(id) {
@@ -59,8 +57,8 @@
             });
         }
 
-
     </script>
+
     @if($carousel != "")
     <p style="text-align: center; color: #101010; font-size: larger"><b> ILS NE SERONT BIENTOT PLUS EN STOCK ! </b></p>
     <hr>

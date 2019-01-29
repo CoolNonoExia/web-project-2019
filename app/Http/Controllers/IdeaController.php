@@ -36,24 +36,31 @@ class IdeaController extends Controller
     public function postAdd(IdeaAddRequest $request)
     {
         $idea = new Suggestion_box;
-        $img = new Image_events;
+        if($request->image !== null)
+        {
+            $img = new Image_events;
 
-        $extension = explode('.', $request->image->getClientOriginalName());
+            $extension = explode('.', $request->image->getClientOriginalName());
 
-        $img->title = $request->title;
-        $img->ext = end($extension);
-        $img->is_presentation = true;
+            $img->title = $request->title;
+            $img->ext = end($extension);
+            $img->is_presentation = true;
 
-        $img->save();
+            $img->save();
 
-        $request->image->storeAs('public/img/ideas', $img->id . '.' . $img->ext);
+            $request->image->storeAs('public/img/ideas', $img->id . '.' . $img->ext);
+
+            $id_img = $img->id;
+        } else {
+            $id_img = 0;
+        }
 
         $idea->title = $request->title;
         $idea->description = $request->desc;
         $idea->post_date = new DateTime();
         $idea->votes_number = 0;
         $idea->unvotes_number = 0;
-        $idea->id_images_events = $img->id;
+        $idea->id_images_events = $id_img;
         $idea->id_user = 3;
 
         $idea->save();

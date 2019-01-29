@@ -16,22 +16,21 @@
 
     <table class="table">
         <thead>
-        <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Quantité</th>
-            <th scope="col">Prix</th>
-            <th></th>
-
-        </tr>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Prix</th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
-        @foreach($products as $product)
-        <tr>
-            <td scope="row">{{$product('title')}}</td>
-            <td>{{$product('quantity')}}</td>
-            <td>{{$product('price')}}€</td>
-            <td><a class="btn btn-danger" href="https://www.instagram.com/" target="_blank"><i class="fas fa-times"></i></a></td>
-        </tr>
+            @foreach($products as $product)
+                <tr>
+                    <td scope="row">{{$product['title']}}</td>
+                    <td>{{$product['quantity']}}</td>
+                    <td>{{$product['price']}}€</td>
+                    <td><a class="btn btn-danger" href="https://www.instagram.com/" target="_blank"><i class="fas fa-times"></i></a></td>
+                </tr>
             @endforeach
         </tbody>
     </table>
