@@ -6,12 +6,15 @@ use App\Category;
 use App\Http\Requests\EventAddRequest;
 use App\Http\Requests\CommentAddRequest;
 use App\Http\Requests\RegistrationAddRequest;
+use App\Http\Requests\VoteAddRequest;
 use App\Image_events;
 use DateTime;
 use Illuminate\Http\Request;
 use App\EventModel;
 use App\Comment;
 use App\Registration;
+use Illuminate\Support\Facades\DB;
+use function Sodium\increment;
 
 
 class EventsController extends Controller
@@ -167,5 +170,17 @@ class EventsController extends Controller
         return redirect()->route('eve');
     }
 
+    public function postVote(VoteAddRequest $request, $id)
+    {
+        $like = EventModel::all()->where('id','=',$id)->first();
+        unset($like->connection);
+        $like->likes_number = $like->likes_number + 1;
+
+
+
+        $like->save();
+
+        return redirect()->route('eveL', $id);
+    }
 
 }

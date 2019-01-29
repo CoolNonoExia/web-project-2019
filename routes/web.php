@@ -38,6 +38,7 @@ Route::get('eventAdd', 'EventsController@getAdd')->name('eveAdd');
 Route::post('eventAdd', 'EventsController@postAdd')->name('eveAdd');
 Route::post('event/{id}', 'EventsController@postComAdd')->name('ComAdd');
 Route::post('eventR/{id}', 'EventsController@postRegister')->name('Regist');
+Route::post('eventL/{id}', 'EventsController@postVote')->name('voteAdd');
 
 Route::get('panier', 'PanierController@index')->name('panier');
 

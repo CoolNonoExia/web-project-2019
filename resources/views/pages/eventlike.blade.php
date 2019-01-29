@@ -40,8 +40,16 @@
             </div>
 
             <div>
-                <a class="btn btn-link i"> <i class="fas fa-thumbs-up"></i></a>
+                <form method="POST" action="{{ route('voteAdd', '') }}\{{ Request::segment(2) }}" enctype="multipart/form-data">
+                    @csrf
+                <div>
+                    <button class="btn btn-link"> <i class="fas fa-thumbs-up"></i></button>
+                    <span>{{$event['likes_number']}}</span>
+                </div>
+                </form>
+
             </div>
+
             <span class="text-right">
                 @if($event['is_free'])
                     Gratuit
@@ -66,7 +74,7 @@
             <button class="btn btn-blue" id="show"> <i class="fas fa-plus"></i> Ajouter un commentaire </button>
         </div>
         <div class="col-12">
-            <form method="POST" action="{{ route('ComAdd', '') }}\{{ Request::segment(2) }}" enctype="multipart/form-data">
+            <form method="POST" id="2" action="{{ route('ComAdd', '') }}\{{ Request::segment(2) }}" enctype="multipart/form-data">
                 @csrf
                 <label class="d-block" for="desc">Commentaire</label>
                 <div class="form-group input-group">
@@ -100,14 +108,14 @@
             $(this).next('.custom-file-label').html(fileName);
         });
 
-        $("form").hide();
+        $("id=2").hide();
 
         $(document).ready(function(){
             $("#hide").click(function(){
-                $("form").hide(1000);
+                $("id=2").hide(1000);
             });
             $("#show").click(function(){
-                $("form").show(1000);
+                $("id=2").show(1000);
             });
         });
      </script>

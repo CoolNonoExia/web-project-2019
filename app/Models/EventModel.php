@@ -9,6 +9,10 @@ class EventModel extends Model
     protected $table = 'events';
     public $timestamps = false;
 
+    public static function find($id)
+    {
+    }
+
     public function image_events()
     {
         return $this->belongsTo('Image_events', 'id_images_events', 'id');
