@@ -30,7 +30,7 @@ Route::get('boutique/T{tri}','BoutiqueController@articles')->name('boutiqueT')->
 Route::get('boutique/{id}', 'BoutiqueController@article')->name('boutiqueSpe');
 Route::get('boutiqueAdd', 'BoutiqueController@getProduct')->name('productAdd');
 Route::post('boutiqueAdd', 'BoutiqueController@addProduct')->name('productAdd');
-Route::post('/boutique/s', 'BoutiqueController@addPanier')->name('boutiqueAddPanier');
+Route::post('boutique/s', 'BoutiqueController@addPanier')->name('boutiqueAddPanier');
 
 Route::get('event', 'EventsController@index')->name('eve');
 Route::get('eventN', 'EventsController@indexN')->name('even');

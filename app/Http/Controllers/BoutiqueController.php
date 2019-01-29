@@ -147,7 +147,9 @@ class BoutiqueController extends Controller
             return redirect()->route('home');
         }
 
-        return view('pages.boutiqueAdd');
+        $categories = Category::all();
+
+        return view('pages.boutiqueAdd', ['cats' => $categories]);
     }
 
     public function addProduct(ProductAddRequest $request)
@@ -159,7 +161,6 @@ class BoutiqueController extends Controller
 
         $img->title = $request->name;
         $img->ext = end($extension);
-
 
         $img->save();
 

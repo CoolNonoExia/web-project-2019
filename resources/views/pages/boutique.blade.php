@@ -183,7 +183,7 @@
             @foreach($products as $product)
             <div class="col" >
                 <?php $img = $imgs->find($product['id_images_products']) ?>
-                <img class="img-fluid" src="{{asset('img\\products\\'.$img['id'].'.'.$img['ext'])}}" alt="Responsive image" style="max-width:250px; max-height: 150px";>
+                <img class="img-fluid" src="{{asset('storage\\img\\products\\'.$img['id'].'.'.$img['ext'])}}" alt="Responsive image" style="max-width:250px; max-height: 150px";>
                 <p style="text-align: center">  {{$product['name']}} </p>
                 <p>{{$product['description']}}</p>
                 <p> Get this product for only {{$product['price']}}€ </p>

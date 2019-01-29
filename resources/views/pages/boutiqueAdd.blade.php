@@ -27,7 +27,7 @@
     <form method="POST" action="{{ route('productAdd') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="title">Name</label>
+            <label for="name">Name</label>
             <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" name="name" value="{{ old('name') }}" placeholder="Clavier, Souris...">
             @if ($errors->has('name'))
                 <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
             @endif
         </div>
         <div class="form-group">
-            <label for="desc">Prix</label>
+            <label for="price">Prix</label>
             <input class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" id="price" name="price" value="{{ old('price') }}" placeholder="...€">
             @if ($errors->has('price'))
                 <span class="invalid-feedback" role="alert">
@@ -54,8 +54,13 @@
             @endif
         </div>
         <div class="form-group">
-            <label for="desc">Categories</label>
-            <input class="form-control{{ $errors->has('cat') ? ' is-invalid' : '' }}" id="cat" name="cat" value="{{ old('cat') }}" placeholder="Numéro de la catégorie">
+            <label for="cat">Catégories</label>
+            <select id="cat" class="form-control{{ $errors->has('cat') ? ' is-invalid' : '' }}" name="cat" required>
+                <option disabled selected value class="d-none">-- choisissez une option --</option>
+                @foreach($cats as $cat)
+                    <option value="{{ $cat['id'] }}">{{ $cat['name'] }}</option>
+                @endforeach
+            </select>
             @if ($errors->has('cat'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('cat') }}</strong>
