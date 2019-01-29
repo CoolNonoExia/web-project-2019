@@ -29,3 +29,4 @@ class EventModel extends Model
         return $this->hasMany('Registration', 'id_events', 'id');
     }
 }
+

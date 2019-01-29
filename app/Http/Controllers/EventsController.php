@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests\EventAddRequest;
+use App\Http\Requests\CommentAddRequest;
+use App\Http\Requests\RegistrationAddRequest;
 use App\Image_events;
 use DateTime;
 use Illuminate\Http\Request;
 use App\EventModel;
 use App\Comment;
+use App\Registration;
+
 
 class EventsController extends Controller
 {
@@ -28,10 +32,11 @@ class EventsController extends Controller
         $events = EventModel::all()->where('events_date', '>', date('Y-m-d h:i:s', time()))->sortBy('events_date');
         $pastevents = EventModel::all()->where('events_date', '<', date('Y-m-d h:i:s', time()))->sortBy('events_date');;
         $imgs = Image_events::all();
+        $regist = Registration::all()->where('id_user', '=', session('id'));
         $date="Seclected";
         $check="checked=\"checked\"";
         $name="";
-        return view('pages.evenement',['events' => $events,'pastevents'=>$pastevents,'imgs'=> $imgs,'date' =>$date, 'name' => $name, 'check' => $check ]);
+        return view('pages.evenement',['events' => $events,'pastevents'=>$pastevents,'imgs'=> $imgs,'date' =>$date, 'name' => $name, 'check' => $check, 'registration' => $regist ]);
     }
 
     public function indexN()
@@ -115,4 +120,37 @@ class EventsController extends Controller
 
         return redirect()->route('eve');
     }
+
+    public function postComAdd(CommentAddRequest $request, $id)
+    {
+        $comments = new Comment;
+
+
+
+        $comments->id_user = session('id');
+        $comments->id_events = $id ;
+        $comments->comment = $request->desc;
+
+        $comments->save();
+
+        return redirect()->route('eveL', $id);
+    }
+
+
+    public function postRegister(RegistrationAddRequest $request, $id)
+    {
+        $regist = new Registration;
+
+
+
+        $regist->id_user = session('id');
+        $regist->id_events = $id ;
+
+
+        $regist->save();
+
+        return redirect()->route('eve');
+    }
+
+
 }

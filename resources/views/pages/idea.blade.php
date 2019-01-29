@@ -17,7 +17,7 @@
     <p style="text-align: center">Si un événement reçoit suffisament de votes, le BDE l'organisera sûrement</p>
     <hr>
     <div class="text-center">
-        <button class="btn btn-success font-italic">Ajoutez vos idées !</button>
+        <button class="btn btn-success font-italic" id="show">Ajoutez vos idées !</button>
     </div>
 
     <form method="POST" action="{{ route('ideaAdd') }}" enctype="multipart/form-data">
@@ -64,7 +64,19 @@
             let fileName = $(this).val().split('\\').pop();
             //replace the "Choose a file" label
             $(this).next('.custom-file-label').html(fileName);
-        })
+        });
+
+        $("form").hide();
+
+        $(document).ready(function(){
+            $("#hide").click(function(){
+                $("form").hide(1000);
+            });
+            $("#show").click(function(){
+                $("form").show(1000);
+            });
+        });
+
     </script>
 
 

@@ -99,11 +99,19 @@
                </div>
                <div class="text-right">
                    @if($event['is_free'])
-                       Free
+                       Gratuit
                    @else
                        Payant
                    @endif
                </div>
+               @if($registration =="")
+               <form method="POST" action="{{ route('Regist','')}}\{{$event['id']}}" enctype="multipart/form-data">
+                   @csrf
+                    <button class="btn btn-blue" id="show"> Je m'inscris ! </button>
+               </form>
+                   @else
+                   <button class="btn btn-success disabled"><i class="fas fa-check"></i> Incris </button>
+               @endif
                <hr style="margin-top:25px; border-top: 1px dashed #8c8b8b;">
            </div>
        </div>
@@ -138,10 +146,11 @@
                    </div>
                    <div class="text-right">
                        @if($pevent['is_free'])
-                           Free
+                           Gratuit
                        @else
                            Payant
                        @endif
+
                    </div>
                    <hr style="margin-top:25px; border-top: 1px dashed #8c8b8b;">
                </div>

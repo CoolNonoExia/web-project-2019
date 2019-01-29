@@ -61,7 +61,7 @@ class IdeaController extends Controller
         $idea->votes_number = 0;
         $idea->unvotes_number = 0;
         $idea->id_images_events = $id_img;
-        $idea->id_user = 3;
+        $idea->id_user = session('id');
 
         $idea->save();
 
