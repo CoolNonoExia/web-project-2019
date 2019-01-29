@@ -15,10 +15,11 @@ class AuthController extends Controller
         return session()->has('logged_in') && session('logged_in');
     }
 
-    private function login($id, $first_name, $role)
+    private function login($id, $last_name, $first_name, $role)
     {
         session()->put('logged_in', true);
         session()->put('id', $id);
+        session()->put('last_name', $last_name);
         session()->put('first_name', $first_name);
         session()->put('role', $role);
     }
@@ -27,6 +28,7 @@ class AuthController extends Controller
     {
         session()->put('logged_in', false);
         session()->forget('id');
+        session()->forget('last_name');
         session()->forget('first_name');
         session()->forget('role');
 
@@ -79,7 +81,7 @@ class AuthController extends Controller
         $new_user = json_decode($new_user->getBody()->getContents(), true)[0];
 
         // Logs the new comer in
-        $this->login($new_user['id'], $new_user['first_name'], $new_user['id_role']);
+        $this->login($new_user['id'], $new_user['last_name'], $new_user['first_name'], $new_user['id_role']);
 
         return redirect()->route('home');
     }
@@ -122,7 +124,7 @@ class AuthController extends Controller
 
         if (password_verify($data['password'], $user_data['password']))
         {
-            $this->login($user_data['id'], $user_data['first_name'], $user_data['id_role']);
+            $this->login($user_data['id'], $user_data['last_name'], $user_data['first_name'], $user_data['id_role']);
 
             return redirect()->route('home');
         }
