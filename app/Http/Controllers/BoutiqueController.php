@@ -102,24 +102,42 @@ class BoutiqueController extends Controller
 
     public function addPanier()
     {
-        /*if(session()->has('panier'))
+        if(isset($_COOKIE['panier']))
         {
-            $panier = session('panier');
-        } else {
-            $panier = [];
-        }*/
-
-        /*if(isset($_COOKIE['panier']))
+            $panier = unserialize($_COOKIE['panier'], ['allowed_classes' => false]);
+        }
+        else
         {
-            $panier = $_COOKIE['panier'];
-        } else {
-            $panier = [];
+            $panier = array();
         }
 
-        array_push($panier, json_decode($_POST['id_pro'], true));*/
+        $panier = (array)$panier;
+        $added = json_decode($_POST['id_pro'], true);
 
-        setcookie('panier', json_decode($_POST['id_pro'], true), time()+60*60*24*7, '/');
-//        session()->put('panier', $panier);
+        $already = false;
+        $i = 0;
+        $c = 0;
+        foreach($panier as $p)
+        {
+            if($p['id'] == $added){
+                $already = true;
+                $c = $i;
+            }
+            $i++;
+        }
+
+        if($already)
+        {
+            $panier[$c]['quantity']++;
+        }
+        else
+        {
+            $panier[count($panier)] = ['id' => $added, 'quantity' => 1];
+        }
+
+        setcookie('panier', serialize($panier), time()+60*60*24*7, '/');
+
+        return json_encode('success');
     }
 
     public function getProduct()

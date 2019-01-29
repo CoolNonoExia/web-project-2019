@@ -44,6 +44,8 @@ Route::post('eventR/{id}', 'EventsController@postRegister')->name('Regist');
 Route::post('eventL/{id}', 'EventsController@postVote')->name('voteAdd');
 
 Route::get('panier', 'PanierController@index')->name('panier');
+Route::post('panier/remove', 'PanierController@remove')->name('panierRemove');
+Route::post('panier/quantity', 'PanierController@changeQuantity')->name('panierChangeQuantity');
 
 Route::get('idea', 'IdeaController@index')->name('idea');
 Route::get('ideaAdd','IdeaController@getAdd')->name('ideaAdd');

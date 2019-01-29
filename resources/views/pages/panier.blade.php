@@ -25,16 +25,64 @@
         </thead>
         <tbody>
             @foreach($products as $product)
-                <tr>
-                    <td scope="row">{{$product['title']}}</td>
-                    <td>{{$product['quantity']}}</td>
-                    <td>{{$product['price']}}€</td>
-                    <td><a class="btn btn-danger" href="https://www.instagram.com/" target="_blank"><i class="fas fa-times"></i></a></td>
+                <tr id="tr{{ $product['product']['id'] }}">
+                    <td scope="row">{{ $product['product']['name'] }}</td>
+                    <td><input onchange="onChangeQuantity(this.value, {{ $product['product']['id'] }})" class="text-center" type="number" value="{{ $product['quantity'] }}"></td>
+                    <td><span>{{ $product['product']['price'] }}</span> €</td>
+                    <td><button class="btn btn-danger" onclick="onClickRemove({{ $product['product']['id'] }})"><i class="fas fa-times"></i></button></td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
+    <div class="row align-items-center justify-content-end">
+        <span class="font-weight-bold">Total : <span id="total"></span> €</span>
+        <button class="btn btn-outline-blue" style="margin: 15px">Commander</button>
+    </div>
 
-    <button class="btn btn-outline-blue">Commander</button>
+    <script>
+        calculateTotal();
+        function calculateTotal(){
+            total = 0;
+
+            for(i = 0; i < $('tbody tr').length; i++){
+                tr = $('tbody tr').eq(i);
+                total += tr.find('input').val() * tr.find('span').text();
+                debugger;
+            }
+
+            $('#total').text(total);
+        }
+
+        function onClickRemove(id){
+            $.ajax({
+                url:'{{ url('/panier/remove') }}',
+                type: "post",
+                dataType: 'json',
+                data: { id_pro: id },
+                headers:
+                {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+            }).done(function(){
+                $('#tr' + id).remove();
+                calculateTotal();
+            });
+        }
+
+        function onChangeQuantity(value, id){
+            $.ajax({
+                url:'{{ url('/panier/quantity') }}',
+                type: "post",
+                dataType: 'json',
+                data: { id_pro: id, value: value },
+                headers:
+                {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+            }).done(function(){
+                calculateTotal();
+            });
+        }
+    </script>
 @endsection
