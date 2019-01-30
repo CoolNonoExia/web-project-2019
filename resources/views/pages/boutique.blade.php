@@ -107,6 +107,7 @@
 
     @if(session()->has('logged_in') && session('logged_in') && session('role') == 2)
         <a href ="{{route('productAdd')}}" class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un produit</a>
+        {{--<a href ="{{route('productAdd')}}" class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un produit</a>--}}
     @endif
 
     @if($carousels != "")

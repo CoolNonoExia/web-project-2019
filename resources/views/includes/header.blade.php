@@ -67,39 +67,31 @@
         </div>
     </div>
     @if(session()->has('logged_in') && session('logged_in'))
-        {{--<i class="fas fa-tools"></i>--}}
-        <div class="col-md-1 col-lg-2">
+        <div class="col-1">
             <div class="row justify-content-end" style="padding-right: 10px">
                 <a href="{{ route('panier') }}"><button class="btn {{ Request::route()->getName() == 'panier' ? 'btn-warning' : 'btn-outline-warning' }}" style="font-size: 34px"><i class="fas fa-shopping-cart"></i></button></a>
             </div>
         </div>
-        <div class="col-md-2 col-lg-1">
+        <div class="col-2">
             <div class="text-right text-white" style="margin-right: 5px">
-                {{ session('first_name') }}
+                {{ session('first_name') }} {{ session('last_name') }}
             </div>
             <div class="dropdown text-right">
                 <button class="btn btn-outline-warning dropdown-toggle" type="button" id="ddlOptions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Options
+                    <i class="fas fa-tools"></i> Mon compte
                 </button>
-                <div class="dropdown-menu" aria-labelledby="ddlOptions">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a href="{{ route('logout') }}"><button class="btn btn-outline-warning">Déconnexion <i class="fas fa-sign-out-alt"></i></button></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="ddlOptions">
+                    <?php if(session('role') == 1) { $rolename = 'Étudiant'; } else if(session('role') == 2) { $rolename = 'Membre du BDE'; } else if(session('role') == 3) { $rolename = 'Membre du CESI'; } ?>
+                    <h6 class="dropdown-header">{{ $rolename }}</h6>
+                        @if(session('role') == 2)
+                            <a class="dropdown-item" href="#">Administration</a>
+                        @endif
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('panier') }}">Panier</a>
+                    <a class="dropdown-item" href="#">Mes commandes</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('logout') }}">Déconnexion <i class="fas fa-sign-out-alt"></i></a>
                 </div>
-                {{--<div class="btn-group">
-                    <button type="button" class="btn btn-danger">Action</button>
-                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-                </div>--}}
             </div>
         </div>
     @else
