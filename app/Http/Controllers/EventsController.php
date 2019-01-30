@@ -89,12 +89,12 @@ class EventsController extends Controller
         $comments = Comment::all()->where('id_events', '=', $id);
         $likes = Like::all()->where('id_user','=', session('id'));
         $users = array();
-        $i = 0;
+
         foreach($comments as $comment)
         {
-            $getreq = $client->get('http://localhost:3000/users/' . 2); //$comment['id_user']
-            array_push($users, json_decode($getreq->getBody()->getContents(), true)[0]);
-            $i++;
+            $getreq = $client->get('http://localhost:3000/users/' . $comment['id_user']);
+            $user = json_decode($getreq->getBody()->getContents(), true);
+            array_push($users, count($user) > 0 ? $user[0] : ['last_name' => 'Utilisateur supprimé', 'first_name' => '']);
         }
 
 

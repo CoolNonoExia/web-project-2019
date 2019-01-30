@@ -46,7 +46,7 @@
             </div>
             <div class="custom-file">
                 <input type="file" class="custom-file-input {{ $errors->has('image') ? ' is-invalid' : '' }}" id="image" name="image" value="{{ old('image') }}" aria-describedby="imgUpload" accept="image/jpeg, image/png, image/bmp, image/gif, image/svg">
-                <label class="custom-file-label" for="image">Choisir image</label>
+                <label class="custom-file-label" for="image">Choisir image (optionnel)</label>
 
                 @if ($errors->has('image'))
                     <span class="invalid-feedback" role="alert">
@@ -87,52 +87,69 @@
         </div>
     </div>
 
+    <?php $i=0; ?>
+    @foreach($ideas as $ideaRow)
+        <div class="row" style="margin-top: 20px">
+            @foreach($ideaRow as $idea)
+                <div class="col-6">
+                    @if($idea != null)
+                        <div class="row">
+                            <div class="col-3 text-right">
+                                <?php $img = $idea['id_images_events'] > 0 ? $imgs->find($idea['id_images_events']) : ['id' => 0, 'ext' => 'jpg'] ?>
+                                <img src="{{ asset('storage/img/ideas/'.$img['id'].'.'.$img['ext']) }}" style="height: 100px" />
+                            </div>
+                            <div class="col-9">
+                                <div class="row">
+                                    <div class="col-4 bg-warning border border-secondary">
+                                        <span>Idée numéro {{$idea['id']}} :</span>
+                                    </div>
+                                    <div class="col-5 text-right">
+                                        <span class="font-weight-bold">{{$users[$i]['first_name']}} {{$users[$i]['last_name']}}</span>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="border" style="height:74px; width: 75%">
+                                        <span style="font-weight: bold;"><u> {{$idea['title']}}</u></span>
+                                        <p>{{$idea['description']}}</p>
+                                    </div>
 
-    @foreach($ideas as $idea)
-        <br>
-        <div class="row">
-            <div class="col-1 bg-warning border border-secondary">
-                <span>Idée numéro {{$idea['id']}} :</span>
-            </div>
+                                    @if($idea['like'])
+                                        <button class="btn btn-primary" style="margin-left: 10px">
+                                            <i class="fas fa-thumbs-up"></i> {{$idea['votes_number']}}
+                                        </button>
+                                        <button class="btn btn-outline-danger"  style="margin-left: 10px" disabled>
+                                            <i class="fas fa-thumbs-down"></i> {{$idea['unvotes_number']}}
+                                        </button>
+                                    @elseif (!$idea['like'] && !$idea['dislike'])
+                                        <form method="POST" action="{{ route('likeAdd', '') }}\{{$idea['id']}}" enctype="multipart/form-data">
+                                            @csrf
+                                            <button class="btn btn-outline-primary" style="margin-left: 10px">
+                                                <i class="fas fa-thumbs-up"></i> {{$idea['votes_number']}}
+                                            </button>
+                                        </form>
+                                        <form method="POST" action="{{ route('dislikeAdd', '') }}\{{$idea['id']}}" enctype="multipart/form-data">
+                                            @csrf
+                                            <button class="btn btn-outline-danger" style="margin-left: 10px">
+                                                <i class="fas fa-thumbs-down"></i> {{$idea['unvotes_number']}}
+                                            </button>
+                                        </form>
+                                    @elseif($idea['dislike'])
+                                        <button class="btn btn-outline-primary" style="margin-left: 10px" disabled>
+                                            <i class="fas fa-thumbs-up"></i> {{$idea['votes_number']}}
+                                        </button>
+                                        <button class="btn btn-danger" style="margin-left: 10px">
+                                            <i class="fas fa-thumbs-down"></i> {{$idea['unvotes_number']}}
+                                        </button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            @endforeach
         </div>
-        <div class="row align-items-center">
-            <div class="border" style="height:50px; width: 350px;">
-                <span style="font-weight: bold;"><u> {{$idea['title']}}</u></span>
-                <p>{{$idea['description']}}</p>
-            </div>
 
-            @if($idea['like'])
-                <span><button class="btn btn-primary"> <i class="fas fa-thumbs-up"></i></button> </span>
-                <span style="padding: 10px;">{{$idea['votes_number']}}</span>
-                <button class="btn btn-outline-danger" disabled> <i class="fas fa-thumbs-down"></i></button>
-                <span style="padding: 10px;">{{$idea['unvotes_number']}}</span>
-            @elseif ($idea['like']== false && $idea['dislike'] ==false)
-                <form method="POST" action="{{ route('likeAdd', '') }}\{{$idea['id']}}" enctype="multipart/form-data">
-                    @csrf
-                    <span><button class="btn btn-outline-primary"> <i class="fas fa-thumbs-up"></i></button> </span>
-                    <span style="padding: 10px;">{{$idea['votes_number']}}</span>
-                </form>
-                <form method="POST" action="{{ route('dislikeAdd', '') }}\{{$idea['id']}}" enctype="multipart/form-data">
-                    @csrf
-                    <button class="btn btn-outline-danger"> <i class="fas fa-thumbs-down"></i></button>
-                    <span style="padding: 10px;">{{$idea['unvotes_number']}}</span>
-                </form>
-
-
-            @elseif($idea['dislike'])
-                <span><button class="btn btn-outline-primary" disabled> <i class="fas fa-thumbs-up"></i></button> </span>
-                <span style="padding: 10px;">{{$idea['votes_number']}}</span>
-                <button class="btn btn-danger"> <i class="fas fa-thumbs-down"></i></button>
-                <span style="padding: 10px;">{{$idea['unvotes_number']}}</span>
-            @endif
-
-
-        </div>
-
-        <?php $i=0; ?>
-        {{--<p style="font-weight: bold">{{$users[$i]['first_name']}} {{$users[$i]['last_name']}}</p>--}}
         <?php $i++; ?>
-
         @endforeach
 
 @endsection

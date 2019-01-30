@@ -153,7 +153,7 @@
     @endif
     <hr size="8" align="center" width="100%">
     <span style="text-align: left">Notre boutique propose une collection d'article qui dépassent l'entendement !</span>
-    <div class="dropdown  text-right col-12 ">
+    <div class="dropdown text-right" style="margin-bottom: 30px">
         <span>Trier par : </span>
         <select id="select" name="tri" class="custom-select" style="width:100px;" onchange="updated(this)">
             <option {{$name}} value="name">Nom</option>
@@ -178,24 +178,29 @@
             </div>
             @endforeach
         </div>
-        <div class="col-8">
-            <div class="row">
-            @foreach($products as $product)
-            <div class="col" >
-                <?php $img = $imgs->find($product['id_images_products']) ?>
-                <img class="img-fluid" src="{{asset('storage\\img\\products\\'.$img['id'].'.'.$img['ext'])}}" alt="Responsive image" style="max-width:250px; max-height: 150px";>
-                <p style="text-align: center">  {{$product['name']}} </p>
-                <p>{{$product['description']}}</p>
-                <p> Get this product for only {{$product['price']}}€ </p>
-                @if(session()->has('logged_in') && session('logged_in'))
-                    @if($product['in_stock'])
-                        <button class="btn btn-blue" onclick="onClick({{$product['id']}})"> Ajouter au panier <i class="fas fa-cart-plus"></i></button>
-                    @else
-                        <button class="btn btn-danger disabled">Rupture de stock</button>
-                    @endif
-                @endif
-            </div>
+        <div class="col-10">
+            @foreach($products as $productRow)
+                <div class="row">
+                    @foreach($productRow as $product)
+                        <div class="col-3" style="padding: 50px">
+                            @if($product != null)
+                                <?php $img = $imgs->find($product['id_images_products']) ?>
+                                <img class="img-fluid" src="{{asset('storage\\img\\products\\'.$img['id'].'.'.$img['ext'])}}">
+                                <div class="font-weight-bold">{{$product['name']}}</div>
+                                <div>{{$product['description']}}</div>
+                                @if(session()->has('logged_in') && session('logged_in'))
+                                    @if($product['in_stock'])
+                                        <div class="text-right">Prix : <span class="font-weight-bold">{{$product['price']}}€</span></div>
+                                        <button class="btn btn-blue btn-block" onclick="onClick({{$product['id']}})"> Ajouter au panier <i class="fas fa-cart-plus"></i></button>
+                                    @else
+                                        <button class="btn btn-danger btn-block disabled">Rupture de stock</button>
+                                    @endif
+                                @endif
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
             @endforeach
-            </div></div>
+        </div>
     </div>
 @endsection

@@ -16,43 +16,56 @@ class IdeaController extends Controller
 {
     public function index()
     {
-        $client = new \GuzzleHttp\Client();
-        $ideas = Suggestion_box::all();
-        $likes = Vote::all()->where('id_user','=',session('id'));
-        $users = array();
-        $i = 0;
-
-        foreach($ideas as $idea)
+        if(!AuthController::isConnected())
         {
-            $getreq = $client->get('http://localhost:3000/users/' . 2); //$comment['id_user']
-            array_push($users, json_decode($getreq->getBody()->getContents(), true)[0]);
-            $i++;
+            return redirect()->route('home');
         }
 
+        $client = new \GuzzleHttp\Client();
+        $ideas = Suggestion_box::all();
+        $imgs = Image_events::all();
+        $votes = Vote::all()->where('id_user','=',session('id'));
+        $users = array();
 
         foreach($ideas as $idea)
         {
-            $vote = false;
+            $getreq = $client->get('http://localhost:3000/users/' . $idea['id_user']);
+            $user = json_decode($getreq->getBody()->getContents(), true);
+            array_push($users, count($user) > 0 ? $user[0] : ['last_name' => 'Utilisateur supprimé', 'first_name' => '']);
+
+            $like = false;
             $dislike = false;
-            foreach($likes as $like)
+
+            foreach($votes as $vote)
             {
-                if($like['id_suggestion_box'] == $idea['id'] && $like['vote']==1)
+                if($vote['id_suggestion_box'] == $idea['id'] && $vote['vote'])
                 {
-                    $vote = true;
-                }if($like['id_suggestion_box'] == $idea['id'] && $like['vote']==0){
+                    $like = true;
+                }
+                if($vote['id_suggestion_box'] == $idea['id'] && !$vote['vote']){
 
                     $dislike = true;
                 }
             }
-            $idea['like'] = $vote;
+            $idea['like'] = $like;
             $idea['dislike'] = $dislike;
         }
 
-        if(AuthController::isConnected())
+        $ideas2D = array();
+        $rows = ceil(count($ideas)/2);
+        $c = 0;
+
+        for($i = 0; $i < $rows; $i++)
         {
-            return view('pages.idea', ['ideas' => $ideas, 'likes' => $likes,'users' => $users]);
+            $ideas2D[$i] = array();
+            for($j = 0; $j < 4; $j++)
+            {
+                $ideas2D[$i][$j] = $c < count($ideas) ? $ideas[$c] : null;
+                $c++;
+            }
         }
-        return redirect()->route('home');
+
+        return view('pages.idea', ['ideas' => $ideas2D, 'imgs' => $imgs, 'likes' => $votes, 'users' => $users]);
     }
 
     public function getAdd()

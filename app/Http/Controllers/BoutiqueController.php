@@ -33,12 +33,26 @@ class BoutiqueController extends Controller
 
         if($id == 1)
         {
-            $products = Product::all()->sortBy('name');
+            $products = Product::orderBy('name', 'asc')->get();
+            $products2D = array();
+            $rows = ceil(count($products)/4);
+            $c = 0;
+
+            for($i = 0; $i < $rows; $i++)
+            {
+                $products2D[$i] = array();
+                for($j = 0; $j < 4; $j++)
+                {
+                    $products2D[$i][$j] = $c < count($products) ? $products[$c] : null;
+                    $c++;
+                }
+            }
+
             $name = "selected";
             $price = "";
 
             return view('pages.boutique',
-                ['products' => $products,
+                ['products' => $products2D,
                     'name' => $name,
                     'price' => $price,
                     'categories' => $categories,
@@ -51,13 +65,26 @@ class BoutiqueController extends Controller
         }
         if ($id == 2)
         {
-
-            $products = Product::all()->sortBy('price');
             $name = "";
             $price = "selected";
 
+            $products = Product::orderBy('price', 'asc')->get();
+            $products2D = array();
+            $rows = ceil(count($products)/4);
+            $c = 0;
+
+            for($i = 0; $i < $rows; $i++)
+            {
+                $products2D[$i] = array();
+                for($j = 0; $j < 4; $j++)
+                {
+                    $products2D[$i][$j] = $c < count($products) ? $products[$c] : null;
+                    $c++;
+                }
+            }
+
             return view('pages.boutique',
-                ['products' => $products,
+                ['products' => $products2D,
                     'name' => $name,
                     'price' => $price,
                     'categories' => $categories,
@@ -73,19 +100,33 @@ class BoutiqueController extends Controller
 
     public function articles($tri)
     {
-            $imgs = Image_products::all();
-            $carousels = "";
-            $products = Product::all()->where('id_categories', '=', $tri);
-            $check = "checked";
-            $uncheck = "";
-            $active = true;
-            $categories = Category::all();
-            /*$product=Product::all()->sortBy('price');*/
-            $name = "";
-            $price = "Selected";
+        $imgs = Image_products::all();
+        $carousels = "";
+        $check = "checked";
+        $uncheck = "";
+        $active = true;
+        $categories = Category::all();
+        /*$product=Product::all()->sortBy('price');*/
+        $name = "";
+        $price = "Selected";
+
+        $products = Product::all()->where('id_categories', '=', $tri);
+        $products2D = array();
+        $rows = ceil(count($products)/4);
+        $c = 0;
+
+        for($i = 0; $i < $rows; $i++)
+        {
+            $products2D[$i] = array();
+            for($j = 0; $j < 4; $j++)
+            {
+                $products2D[$i][$j] = $c < count($products) ? $products[$c] : null;
+                $c++;
+            }
+        }
 
             return view('pages.boutique',
-                ['products' => $products,
+                ['products' => $products2D,
                 'name' => $name,
                 'price' => $price,
                 'categories' => $categories,
@@ -111,15 +152,29 @@ class BoutiqueController extends Controller
 
         $active = true;
         $tri = 0;
-        $product = Product::all()->sortBy('name');
         $categories = Category::all();
         $check = "checked";
         $uncheck = "";
         $name = "Selected";
         $price = "";
 
+        $products = Product::orderBy('name', 'asc')->get();
+        $products2D = array();
+        $rows = ceil(count($products)/4);
+        $c = 0;
+
+        for($i = 0; $i < $rows; $i++)
+        {
+            $products2D[$i] = array();
+            for($j = 0; $j < 4; $j++)
+            {
+                $products2D[$i][$j] = $c < count($products) ? $products[$c] : null;
+                $c++;
+            }
+        }
+
         return view('pages.boutique',
-            ['products' => $product,
+            ['products' => $products2D,
                 'name' => $name,
                 'price' => $price,
                 'categories' => $categories,
