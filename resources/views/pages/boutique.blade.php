@@ -17,31 +17,23 @@
 
     <script>
         function updated(element) {
-            let idx = element.selectedIndex;
-            let val = element.options[idx].value;
+            let val = element.options[element.selectedIndex].value;
+            let val2 = $('#select2').val();
 
-            if(val==='name')
-            {
+            location.replace('{{ route('boutique') }}?sortBy=' + val + '&sort=' + val2);
+        }
 
-                location.replace('{{route('boutiqueSpe',$id=1)}}');
-            } else {
-                location.replace('{{route('boutiqueSpe',$id=2)}}');
-            }
+        function updated2(element) {
+            let val = element.options[element.selectedIndex].value;
+            let val2 = $('#select').val();
+
+            location.replace('{{ route('boutique') }}?sortBy=' + val2 + '&sort=' + val);
         }
 
         function onradiobtn(element) {
-
             let id = element.id;
 
-
-            if(id == 0)
-            {
-                location.replace('{{route('boutique')}}');
-
-            }else{
-                location.replace('{{ route('boutique') }}/T'+id);
-
-            }
+            location.replace('{{ route('boutique') }}?cat=' + id);
         }
 
         function onClick(id) {
@@ -159,6 +151,10 @@
             <option {{$name}} value="name">Nom</option>
             <option {{$price}} value="price">Prix</option>
         </select>
+        <select id="select2" name="sense" class="custom-select" style="width:130px;" onchange="updated2(this)">
+            <option {{$asc}} value="asc">Croissant</option>
+            <option {{$desc}} value="desc">Décroissant</option>
+        </select>
     </div>
 
     <div class="row">
@@ -171,7 +167,7 @@
             </div>
             @foreach($categories as $category)
             <div class="custom-control custom-radio">
-                <input class="custom-control-input" type="radio" name="cat" id="{{$category['id']}}" value="option" onclick="onradiobtn(this)"{{ $category['id'] == $tri ? $check : $uncheck }}>
+                <input class="custom-control-input" type="radio" name="cat" id="{{$category['id']}}" value="option" onclick="onradiobtn(this)" {{ $category['id'] == $tri ? $check : $uncheck }}>
                 <label class="custom-control-label" for="{{$category['id']}}">
                     {{$category['name']}}
                 </label>

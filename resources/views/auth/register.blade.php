@@ -129,6 +129,16 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input class="custom-control-input {{ $errors->has('accept') ? ' is-invalid' : '' }}" type="checkbox" name="accept" id="accept" {{ old('accept') ? 'checked' : '' }}>
+
+                                    <label class="custom-control-label" for="accept" style="font-size: 11px; padding: 4px 0px">
+                                        {{ __('J\'accepte les conditions générales d\'utilisation.') }}
+                                    </label>
+                                </div>
+                            </div>
+
                             <div class="form-group" style="margin-bottom: 0px">
                                 <button type="submit" class="btn btn-warning btn-block font-weight-bold" style="padding: .5rem .75rem; color: #334">
                                     {{ __('S\'INSCRIRE') }}

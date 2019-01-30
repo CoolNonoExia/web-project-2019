@@ -60,16 +60,6 @@
                                 @endif
                             </div>
 
-                            <div class="form-group">
-                                <div class="custom-control custom-switch">
-                                    <input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="custom-control-label" for="remember" style="font-size: 11px; padding: 4px 0px">
-                                        {{ __('Se souvenir de moi') }}
-                                    </label>
-                                </div>
-                            </div>
-
                             <div class="form-group" style="margin-bottom: 0px">
                                 <button type="submit" class="btn btn-warning btn-block font-weight-bold" style="padding: .5rem .75rem; color: #334">
                                     {{ __('SE CONNECTER') }}

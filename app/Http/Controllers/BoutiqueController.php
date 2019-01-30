@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class BoutiqueController extends Controller
 {
-    public function article($id)
+    public function index(Request $request)
     {
-        $categories = Category::all();
+        $qstrings = $request->all();
+
         $imgs = Image_products::all();
+        $categories = Category::all();
+
         $carousels = DB::table('orders')
             ->join('products', 'orders.id_products', '=', 'products.id')
             ->selectRaw('orders.id_products, SUM(orders.quantity) AS q, products.id_images_products')
@@ -26,150 +29,94 @@ class BoutiqueController extends Controller
             ->get();
         $carousels = json_decode($carousels, true);
 
+        $active = true;
         $check = "checked";
         $uncheck = "";
-        $tri = 0;
-        $active = true;
 
-        if($id == 1)
+        if(array_key_exists('sortBy', $qstrings))
+        {
+            if($qstrings['sortBy'] == 'price')
+            {
+                if(array_key_exists('sort', $qstrings))
+                {
+                    if($qstrings['sort'] == 'desc')
+                    {
+                        $products = Product::orderBy('price', 'desc')->get();
+                        $name = "";
+                        $price = "selected";
+                        $asc = '';
+                        $desc = 'selected';
+                    }
+                    else
+                    {
+                        $products = Product::orderBy('price', 'asc')->get();
+                        $name = "";
+                        $price = "selected";
+                        $asc = 'selected';
+                        $desc = '';
+                    }
+                }
+            }
+            else
+            {
+                if(array_key_exists('sort', $qstrings))
+                {
+                    if($qstrings['sort'] == 'desc')
+                    {
+                        $products = Product::orderBy('price', 'desc')->get();
+                        $name = "selected";
+                        $price = "";
+                        $asc = '';
+                        $desc = 'selected';
+                    }
+                    else
+                    {
+                        $products = Product::orderBy('price', 'asc')->get();
+                        $name = "selected";
+                        $price = "";
+                        $asc = 'selected';
+                        $desc = '';
+                    }
+                }
+            }
+        }
+        else
         {
             $products = Product::orderBy('name', 'asc')->get();
-            $products2D = array();
-            $rows = ceil(count($products)/4);
-            $c = 0;
-
-            for($i = 0; $i < $rows; $i++)
-            {
-                $products2D[$i] = array();
-                for($j = 0; $j < 4; $j++)
-                {
-                    $products2D[$i][$j] = $c < count($products) ? $products[$c] : null;
-                    $c++;
-                }
-            }
-
             $name = "selected";
+            $asc = 'selected';
+            $desc = '';
             $price = "";
-
-            return view('pages.boutique',
-                ['products' => $products2D,
-                    'name' => $name,
-                    'price' => $price,
-                    'categories' => $categories,
-                    'check' => $check,
-                    'uncheck' => $uncheck,
-                    'tri' => $tri,
-                    'imgs' => $imgs,
-                    'carousels' => $carousels,
-                    'active' => $active]);
         }
-        if ($id == 2)
+
+        if(array_key_exists('cat', $qstrings))
         {
-            $name = "";
-            $price = "selected";
+            $tri = $qstrings['cat'];
 
-            $products = Product::orderBy('price', 'asc')->get();
-            $products2D = array();
-            $rows = ceil(count($products)/4);
-            $c = 0;
-
-            for($i = 0; $i < $rows; $i++)
+            if($tri != 0)
             {
+                $products = Product::all()->where('id_categories', '=', $tri);
+            }
+        }
+        else
+        {
+            $tri = 0;
+        }
+
+        $products2D = array();
+
+        $i = 0;
+        $j = 0;
+        foreach($products as $product)
+        {
+            $products2D[$i][$j] = $product;
+            $j++;
+
+            if($j >= 4)
+            {
+                $j = 0;
+                $i++;
                 $products2D[$i] = array();
-                for($j = 0; $j < 4; $j++)
-                {
-                    $products2D[$i][$j] = $c < count($products) ? $products[$c] : null;
-                    $c++;
-                }
-            }
-
-            return view('pages.boutique',
-                ['products' => $products2D,
-                    'name' => $name,
-                    'price' => $price,
-                    'categories' => $categories,
-                    'check' => $check,
-                    'uncheck' => $uncheck,
-                    'tri' => $tri,
-                    'imgs' => $imgs,
-                    'carousels' => $carousels,
-                    'active' => $active]);
-        }
-        return 'Last return';
-    }
-
-    public function articles($tri)
-    {
-        $imgs = Image_products::all();
-        $carousels = "";
-        $check = "checked";
-        $uncheck = "";
-        $active = true;
-        $categories = Category::all();
-        /*$product=Product::all()->sortBy('price');*/
-        $name = "";
-        $price = "Selected";
-
-        $products = Product::all()->where('id_categories', '=', $tri);
-        $products2D = array();
-        $rows = ceil(count($products)/4);
-        $c = 0;
-
-        for($i = 0; $i < $rows; $i++)
-        {
-            $products2D[$i] = array();
-            for($j = 0; $j < 4; $j++)
-            {
-                $products2D[$i][$j] = $c < count($products) ? $products[$c] : null;
-                $c++;
-            }
-        }
-
-            return view('pages.boutique',
-                ['products' => $products2D,
-                'name' => $name,
-                'price' => $price,
-                'categories' => $categories,
-                'check' => $check,
-                'uncheck' => $uncheck,
-                'tri' => $tri,
-                'imgs' => $imgs,
-                'carousels' => $carousels,
-                'active' => $active]);
-    }
-
-    public function index()
-    {
-        $imgs = Image_products::all();
-        $carousels = DB::table('orders')
-            ->join('products', 'orders.id_products', '=', 'products.id')
-            ->selectRaw('orders.id_products, SUM(orders.quantity) AS q, products.id_images_products')
-            ->groupBy('orders.id_products')
-            ->orderByDesc('q')
-            ->LIMIT(3)
-            ->get();
-        $carousels = json_decode($carousels, true);
-
-        $active = true;
-        $tri = 0;
-        $categories = Category::all();
-        $check = "checked";
-        $uncheck = "";
-        $name = "Selected";
-        $price = "";
-
-        $products = Product::orderBy('name', 'asc')->get();
-        $products2D = array();
-        $rows = ceil(count($products)/4);
-        $c = 0;
-
-        for($i = 0; $i < $rows; $i++)
-        {
-            $products2D[$i] = array();
-            for($j = 0; $j < 4; $j++)
-            {
-                $products2D[$i][$j] = $c < count($products) ? $products[$c] : null;
-                $c++;
             }
         }
 
@@ -177,6 +124,8 @@ class BoutiqueController extends Controller
             ['products' => $products2D,
                 'name' => $name,
                 'price' => $price,
+                'asc' => $asc,
+                'desc' => $desc,
                 'categories' => $categories,
                 'check' => $check,
                 'uncheck' => $uncheck,

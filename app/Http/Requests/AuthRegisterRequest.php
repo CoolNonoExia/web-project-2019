@@ -29,6 +29,7 @@ class AuthRegisterRequest extends FormRequest
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             'id_campus' => ['required', 'int'],
+            'accept' => ['required']
         ];
     }
 }
