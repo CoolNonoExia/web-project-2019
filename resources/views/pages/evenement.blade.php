@@ -47,82 +47,82 @@
         }
     </script>
 
-   <div class="container-fluid">
+   @if(session()->has('logged_in') && session('logged_in') && session('role') == 2)
+       <h2>Administration</h2>
+       <a href ="{{route('eveAdd')}}" class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un evenement</a>
+       <hr />
+   @endif
+   <div class="row justify-content-center">
 
-       @if(session()->has('logged_in') && session('logged_in') && session('role') == 2)
-           <a href ="{{route('eveAdd')}}" class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un evenement</a>
-       @endif
-       <div class="row justify-content-center">
+       <div class="col-8">
 
-           <div class="col-8">
-
-               <div class="row">
-                       <div class="custom-control custom-switch col">
-                           <input type="checkbox" {{$check}} class="custom-control-input" id="customSwitch1" onchange="check(this)">
-                           <label class="custom-control-label" for="customSwitch1">Evenements passés</label>
-                       </div>
-                       <div class="dropdown  text-right col">
-                           <span>Trier par : </span>
-                           <select id="select" name="tri" class="custom-select" style="width:100px;" onchange="updated(this)">
-                               <option {{$date}} value="eve">Date</option>
-                               <option {{$name}} value="even">Nom</option>
-                           </select>
-                       </div>
-               </div>
+           <div class="row">
+                   <div class="custom-control custom-switch col">
+                       <input type="checkbox" {{$check}} class="custom-control-input" id="customSwitch1" onchange="check(this)">
+                       <label class="custom-control-label" for="customSwitch1">Evenements passés</label>
+                   </div>
+                   <div class="dropdown  text-right col">
+                       <span>Trier par : </span>
+                       <select id="select" name="tri" class="custom-select" style="width:100px;" onchange="updated(this)">
+                           <option {{$date}} value="eve">Date</option>
+                           <option {{$name}} value="even">Nom</option>
+                       </select>
+                   </div>
            </div>
        </div>
-       <div class="row justify-content-center">
-           <div class="col-9" style="margin: 30px 0px; background-color: #BD0F14; color: white; font-weight: bold; padding:4px">
-               <p>Evenement à venir</p>
-           </div>
+   </div>
+   <div class="row justify-content-center">
+       <div class="col-9" style="margin: 30px 0px; background-color: #BD0F14; color: white; font-weight: bold; padding:4px">
+           <p>Evenement à venir</p>
        </div>
+   </div>
 
-       @foreach($events as $event)
-       <div class="row">
-           <div class="col-2" style="height: 150px;">
-               {{-- Images --}}
-               <?php $img = $imgs->find($event['id_images_events']) ?>
-               <img src="{{ asset('storage/img/events/'.$img['id'].'.'.$img['ext']) }}" class="img-fluid" style="max-height: 100%; max-width: 100%;" />
+   @foreach($events as $event)
+   <div class="row">
+       <div class="col-2" style="height: 150px;">
+           {{-- Images --}}
+           <?php $img = $imgs->find($event['id_images_events']) ?>
+           <img src="{{ asset('storage/img/events/'.$img['id'].'.'.$img['ext']) }}" class="img-fluid" style="max-height: 100%; max-width: 100%;" />
+       </div>
+       <div class="col-8">
+           <div class="row">
+               <div class="col">
+                   <span style="font-weight: bold;"> {{$event['title']}}</span>
+               </div>
+               <div class="col text-right">
+                   <span>
+                       {{$event['events_date']}}
+                   </span>
+               </div>
            </div>
-           <div class="col-8">
-               <div class="row">
-                   <div class="col">
-                       <span style="font-weight: bold;"> {{$event['title']}}</span>
-                   </div>
-                   <div class="col text-right">
-                       <span>
-                           {{$event['events_date']}}
-                       </span>
-                   </div>
-               </div>
-               <div class="border"  style="height:102px;">
-                   <div>{{$event['description']}}</div>
-               </div>
-               <div class="text-right">
-                   @if($event['is_free'])
-                       Gratuit
-                   @else
-                       Payant
-                   @endif
-               </div>
-               @if($event['registered'])
-                   <button class="btn btn-success disabled"><i class="fas fa-check"></i> Incris </button>
+           <div class="border"  style="height:102px;">
+               <div>{{$event['description']}}</div>
+           </div>
+           <div class="text-right">
+               @if($event['is_free'])
+                   Gratuit
                @else
-                   <form method="POST" action="{{ route('Regist','')}}\{{$event['id']}}">
-                       @csrf
-                       <button class="btn btn-blue" id="show"> Je m'inscris ! </button>
-                   </form>
+                   Payant
                @endif
-               <hr style="margin-top:25px; border-top: 1px dashed #8c8b8b;">
            </div>
+           @if($event['registered'])
+               <button class="btn btn-success disabled"><i class="fas fa-check"></i> Incris </button>
+           @else
+               <form method="POST" action="{{ route('Regist','')}}\{{$event['id']}}">
+                   @csrf
+                   <button class="btn btn-blue" id="show"> Je m'inscris ! </button>
+               </form>
+           @endif
+           <hr style="margin-top:25px; border-top: 1px dashed #8c8b8b;">
        </div>
-       @endforeach
-       @if($pastevents != "")
-           <div class="row justify-content-center">
-           <div class="col-9" style="margin: 30px 0px; background-color: #BD0F14; color: white; font-weight: bold; padding:4px">
-               <p>Evenement passés</p>
-           </div>
+   </div>
+   @endforeach
+   @if($pastevents != "")
+       <div class="row justify-content-center">
+       <div class="col-9" style="margin: 30px 0px; background-color: #BD0F14; color: white; font-weight: bold; padding:4px">
+           <p>Evenement passés</p>
        </div>
+   </div>
 
        @foreach($pastevents as $pevent)
            <div class="row">
@@ -157,6 +157,5 @@
                </div>
            </div>
        @endforeach
-       @endif
-   </div>
+   @endif
 @endsection

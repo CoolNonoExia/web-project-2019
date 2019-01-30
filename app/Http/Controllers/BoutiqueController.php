@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryAddRequest;
 use App\Http\Requests\ProductAddRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -209,6 +210,16 @@ class BoutiqueController extends Controller
         $product->id_images_products = $img->id;
 
         $product->save();
+
+        return redirect()->route('boutique');
+    }
+
+    public function postCategory(CategoryAddRequest $request)
+    {
+        $cat = new Category;
+
+        $cat->name = $request->cat;
+        $cat->save();
 
         return redirect()->route('boutique');
     }

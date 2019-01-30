@@ -54,6 +54,15 @@
             });
         }
 
+        $(document).ready(function(){
+            $("#hide").click(function(){
+                $("#addcat").hide(1000);
+            });
+            $("#show").click(function(){
+                $("#addcat").show(1000);
+            });
+        });
+
     </script>
 
     <style>
@@ -106,13 +115,27 @@
     <div id="snackbar" class="bg-success">Article ajouté au panier</div>
 
     @if(session()->has('logged_in') && session('logged_in') && session('role') == 2)
-        <a href ="{{route('productAdd')}}" class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un produit</a>
-        {{--<a href ="{{route('productAdd')}}" class="btn btn-blue"> <i class="fas fa-plus"></i> Ajouter un produit</a>--}}
+        <h2>Administration</h2>
+        <a href ="{{route('productAdd')}}" class="btn btn-blue"><i class="fas fa-plus"></i> Ajouter un produit</a>
+        <a id="show" class="btn btn-blue text-white"><i class="fas fa-plus"></i> Ajouter une catégorie</a>
+        <form id="addcat" method="POST" action="{{ route('catAdd') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+                <label for="title">Catégorie</label>
+                <input class="form-control{{ $errors->has('cat') ? ' is-invalid' : '' }}" id="cat" name="cat" value="{{ old('cat') }}" placeholder="Sport, maquillage...">
+                @if ($errors->has('cat'))
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('cat') }}</strong>
+                </span>
+                @endif
+            </div>
+            <button type="submit" class="btn btn-success text-white">Ajouter</button>
+        </form>
+        <hr/>
     @endif
 
     @if($carousels != "")
         <p style="text-align: center; color: #101010; font-size: larger"><b> ILS NE SERONT BIENTOT PLUS EN STOCK ! </b></p>
-        <hr>
         <div class="row">
             <div id="carousel-home" class="carousel slide col-4 offset-4" data-ride="carousel";>
                 <ol class="carousel-indicators">
@@ -200,4 +223,8 @@
             @endforeach
         </div>
     </div>
+
+    <script>
+        $("#addcat").hide();
+    </script>
 @endsection

@@ -55,7 +55,7 @@
                 @endif
             </div>
         </div>
-        <button type="submit" class="btn btn-success text-white"  >Submit</button>
+        <button type="submit" class="btn btn-success text-white">Suggérer</button>
     </form>
 
     <script>

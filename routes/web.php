@@ -24,6 +24,7 @@ Route::get('/', 'AccueilController@index')->name('home');
 Route::get('boutique', 'BoutiqueController@index')->name('boutique');
 Route::get('boutiqueAdd', 'BoutiqueController@getProduct')->name('productAdd');
 Route::post('boutiqueAdd', 'BoutiqueController@addProduct')->name('productAdd');
+Route::post('boutique', 'BoutiqueController@postCategory')->name('catAdd');
 Route::post('boutique/s', 'BoutiqueController@addPanier')->name('boutiqueAddPanier');
 
 Route::get('event', 'EventsController@index')->name('eve');
