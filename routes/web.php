@@ -47,3 +47,5 @@ Route::get('ideaAdd','IdeaController@getAdd')->name('ideaAdd');
 Route::post('ideaAdd', 'IdeaController@postAdd')->name('ideaAdd');
 Route::post('ideaL/{id}', 'IdeaController@postLike')->name('likeAdd');
 Route::post('idealD/{id}', 'IdeaController@postDislike')->name('dislikeAdd');
+
+Route::get('legal', 'LegalController@index')->name('legal');

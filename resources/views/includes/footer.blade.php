@@ -31,3 +31,4 @@
 <a href="https://ecole-ingenieurs.cesi.fr/" target="_blank">
     <img class="float-right rounded" src="{{ asset('img/CESI_logo.jpg') }}" height="50px" />
 </a>
+<a class="btn btn-link i float-right" href="{{route('legal')}}" target="_blank"><i class="fas fa-balance-scale"></i></a>
